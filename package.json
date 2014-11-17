@@ -1,0 +1,13 @@
+{
+  "name"         : "webdesfinal",
+  "version"      : "0.0.0",
+  "description"  : "What's your future like?",
+  "main"         : "server.js",
+  "author"       : "#ME",
+  "dependencies" : {
+    "express"         : "~4.6.1",
+    "morgan"          : "~1.1.1",
+    "body-parser"     : "~1.4.3",
+    "method-override" : "~2.1.1"
+  }
+}
