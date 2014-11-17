@@ -19,6 +19,7 @@
   <script type="text/javascript" src="/js/lib/angular.min.js"></script>
   <!-- // <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-route.min.js"></script> -->
   <script type="text/javascript" src="/js/lib/angular-route.min.js"></script>
+  <script type="text/javascript" src="/js/lib/angular-animate.min.js"></script>
 
   <!-- // <script src="/js/lib/random-color.js" type="text/javascript" charset="utf-8" async defer></script> -->
 
@@ -29,7 +30,7 @@
 </head>
 <body>
 
-    <ng-view></ng-view>
+    <div class="page {{ pageClass }}" ng-view></div>
 
 </body>
 </html>

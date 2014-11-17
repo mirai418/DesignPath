@@ -1,4 +1,4 @@
-angular.module('webdesfinalApp', ["ngRoute"])
+angular.module('webdesfinalApp', ["ngRoute", "ngAnimate"])
 
 .config(["$routeProvider", function ($routeProvider) {
 
