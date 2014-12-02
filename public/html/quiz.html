@@ -1,3 +1,34 @@
-Quiz
 
-<a href="/#/" title="">home</a>
+
+<div class="page-contents quiz-wrapper">
+
+  <nav class="quiz-nav clearfix">
+    <div class="my-button pull-left" ng-click="prevQuestion()">
+      &lt; Previous Question
+    </div>
+    <div class="my-button pull-right" ng-click="nextQuestion()">
+      Next Question &gt;
+    </div>
+  </nav>
+
+  <div class="question">
+    {{question.prompt}}
+  </div>
+
+  <div class="choices-wrapper clearfix">
+
+    <div class="choice buttonize" ng-class="{'selected': choice.selected}" ng-repeat="choice in question.choices" ng-click="choice.selected = !choice.selected">
+      <p class="abs-center vertically-center horizontally-center">
+        {{choice.text}}
+      </p>
+    </div>
+
+  </div>
+
+  <div class="submit-answer-wrapper">
+    <div class="my-button" ng-click="submitQuestion()">
+      Submit Question
+    </div>
+  </div>
+
+</div>

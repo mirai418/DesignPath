@@ -1,4 +1,4 @@
-angular.module('webdesfinalApp', ["ngRoute", "ngAnimate"])
+angular.module('webdesfinalApp', ["ngRoute", "ngAnimate", "asui"])
 
 .config(["$routeProvider", function ($routeProvider) {
 
@@ -9,10 +9,27 @@ angular.module('webdesfinalApp', ["ngRoute", "ngAnimate"])
     templateUrl: "html/home.html",
     controller: "HomeCtrl"
   })
-  .when("/quiz", {
+  .when("/home", {
+    redirectTo: function () {
+      return "/";
+    }
+  })
+
+  .when("/quiz/:id", {
     title: "Quiz",
     templateUrl: "html/quiz.html",
     controller: "QuizCtrl"
+  })
+  .when("/quiz", {
+    redirectTo: function () {
+      return "/quiz/1";
+    }
+  })
+
+  .when("/outcome", {
+    title: "Outcome",
+    templateUrl: "html/outcome.html",
+    controller: "OutcomeCtrl"
   })
   .otherwise({
     title: "404",
