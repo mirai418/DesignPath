@@ -1,15 +1,15 @@
-angular.module("webdesfinalApp")
+angular.module("designpathApp")
 
 .controller("HomeCtrl", [ "$scope", function ($scope) {
 
   console.log('HomeCtrl');
-  $scope.pageClass = 'page-home';
+  $scope.pageClass = 'home-page';
 
 }])
 
 .controller("QuizCtrl", [ "$scope", "$route", "$location", "QuizService", function ($scope, $route, $location, QuizService) {
 
-  $scope.pageClass = 'page-quiz';
+  $scope.pageClass = 'quiz-page';
 
   $scope.questionID = $route.current.params.id;
 
@@ -32,8 +32,22 @@ angular.module("webdesfinalApp")
 .controller("OutcomeCtrl", [ "$scope", "QuizService", function ($scope, QuizService) {
 
   console.log('OutcomeCtrl');
-  $scope.pageClass = 'page-outcome';
+  $scope.pageClass = 'outcome-page';
 
   $scope.outcome = QuizService.getOutcome();
+
+}])
+
+.controller("AboutCtrl", [ "$scope", function ($scope) {
+
+  console.log('AboutCtrl');
+  $scope.pageClass = 'about-page';
+
+}])
+
+.controller("ExploreCtrl", [ "$scope", function ($scope) {
+
+  console.log('Explore');
+  $scope.pageClass = 'explore-page';
 
 }])

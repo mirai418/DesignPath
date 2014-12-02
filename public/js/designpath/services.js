@@ -1,4 +1,4 @@
-angular.module('webdesfinalApp')
+angular.module('designpathApp')
 
 .factory('QuizService', [ function() {
 

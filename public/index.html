@@ -1,53 +1,57 @@
 <!doctype html>
 
-<html ng-app="webdesfinalApp">
+<html ng-app="designpathApp">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>webdesfinal</title>
+  <title ng-bind="title + ' | DESIGNPATH'">DESIGNPATH</title>
 
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" type="text/css" href="/css/reset.css">
-  <link rel="stylesheet" href="/js/lib/bootstrap.min.css">
-  <link rel="stylesheet" href="/js/lib/font-awesome.min.css">
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:100,300,400' type='text/css'>
-
+  <link rel="stylesheet" type="text/css" href="/css/lib/reset.css">
+  <link rel="stylesheet" type="text/css" href="/css/lib/font-awesome.min.css">
+  <link rel='stylesheet' type="text/css" href='http://fonts.googleapis.com/css?family=Lato:100,300,400' type='text/css'>
   <link rel="stylesheet" type="text/css" href="/css/lib/asui.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/webdesfinal.css">
+  <link rel="stylesheet" type="text/css" href="/css/designpath/designpath.css">
 
   <script type="text/javascript" src="/js/lib/angular.min.js"></script>
   <script type="text/javascript" src="/js/lib/angular-route.min.js"></script>
   <script type="text/javascript" src="/js/lib/angular-animate.min.js"></script>
   <script type="text/javascript" src="/js/lib/asui.min.js"></script>
 
-  <!-- // <script src="/js/lib/random-color.js" type="text/javascript" charset="utf-8" async defer></script> -->
-
-  <script src="/js/core.js"></script>
-  <script src="/js/controllers.js"></script>
-  <script src="/js/services.js"></script>
+  <script type="text/javascript" src="/js/designpath/core.js"></script>
+  <script type="text/javascript" src="/js/designpath/controllers.js"></script>
+  <script type="text/javascript" src="/js/designpath/services.js"></script>
 
 </head>
 <body>
 
     <header>
-      <div class="logo">
-        LOGO HERE
+      <div class="contents">
+        <a class="non-styling" href="/#/" title="Home">
+          <div class="logo">
+            DESIGNPATH
+          </div>
+        </a>
+        <nav>
+          <ul>
+              <li class="h-margin-medium"><a href="/#/home">home</a></li>
+              <li class="h-margin-medium"><a href="/#/quiz">take quiz</a></li>
+              <li class="h-margin-medium"><a href="/#/explore">explore careers</a></li>
+              <li class="h-margin-medium"><a href="/#/about">about</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="html/about.html">about</a></li>
-            <li><a href="html/services.html">contact</a></li>
-        </ul>
-      </nav>
+
     </header>
 
-    <div class="page {{ pageClass }}" ng-view></div>
+    <article class="{{pageClass}}" ng-view></article>
 
-<!--     <footer>
-    <div>&copy; WebDesFinal 2014</div>
-    </footer> -->
+    <footer>
+      <div class="contents">
+        <p>&copy; DESIGNPATH 2014</p>
+      </div>
+
+    </footer>
 
 </body>
 </html>

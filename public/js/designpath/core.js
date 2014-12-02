@@ -1,4 +1,4 @@
-angular.module('webdesfinalApp', ["ngRoute", "ngAnimate", "asui"])
+angular.module('designpathApp', ["ngRoute", "ngAnimate", "asui"])
 
 .config(["$routeProvider", function ($routeProvider) {
 
@@ -31,6 +31,19 @@ angular.module('webdesfinalApp', ["ngRoute", "ngAnimate", "asui"])
     templateUrl: "html/outcome.html",
     controller: "OutcomeCtrl"
   })
+
+  .when("/about", {
+    title: "About",
+    templateUrl: "html/about.html",
+    controller: "AboutCtrl"
+  })
+
+  .when("/explore", {
+    title: "Explore",
+    templateUrl: "html/explore.html",
+    controller: "ExploreCtrl"
+  })
+
   .otherwise({
     title: "404",
     template: "Not Found Bru"
@@ -43,6 +56,14 @@ angular.module('webdesfinalApp', ["ngRoute", "ngAnimate", "asui"])
 
   angular.element($window).bind("resize", function (event) {
     $rootScope.$apply();
+  });
+
+  $rootScope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+    if (angular.isDefined(current.$$route)) {
+      $rootScope.title = current.$$route.title;
+    } else {
+      $rootScope.title = "";
+    }
   });
 
 }])
