@@ -96,7 +96,7 @@ a:hover {
 
 .buttonize {
   display: inline-block;
-  border-radius: 2px;
+  border-radius: 3px;
   cursor: pointer; }
 
 .buttonize:hover {
@@ -117,8 +117,8 @@ header {
   right: 0;
   background-color: rgba(255, 255, 255, 0.9); }
   header img.logo {
-    margin-top: 9px;
-    height: 42px;
+    margin-top: 10px;
+    height: 40px;
     float: left; }
   header img.logo:hover {
     opacity: 0.6; }
@@ -157,7 +157,8 @@ section {
     background-color: #f7f7f7; }
   section .section-image {
     position: absolute;
-    z-index: -1; }
+    z-index: -1;
+    overflow: hidden; }
   section .medium-width {
     width: 600px; }
   section .narrow-width {
@@ -188,14 +189,6 @@ section {
   display: inline-block;
   text-align: center; }
 
-.circle {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  border: 1px solid #00907c;
-  display: inline-block;
-  position: relative; }
-
 .circle-image {
   width: 250px; }
 
@@ -220,26 +213,44 @@ section {
   width: 540px;
   vertical-align: middle; }
 
-.quiz {
-  padding: 60px 0px; }
-  .quiz .choices-wrapper {
-    text-align: center;
-    height: 120px; }
-  .quiz .submit-answer-wrapper {
-    margin-top: 140px; }
-  .quiz .choice {
-    position: relative;
-    border: 1px solid #00907c;
-    color: #00907c;
-    display: inline-block;
-    margin: 10px;
-    width: 40%;
-    padding: 30px;
-    vertical-align: middle;
-    height: 100%;
-    /*height: 60px;*/ }
-  .quiz .choice.selected {
-    opacity: 0.4; }
+.quiz-page footer, .outcome-page footer, .explore-page footer, .about-page footer {
+  position: fixed; }
+
+.quiz .choices-wrapper {
+  text-align: center; }
+.quiz .choice {
+  position: relative;
+  border: 1px solid #00907c;
+  color: #00907c;
+  display: inline-block;
+  margin: 10px;
+  width: 40%;
+  padding: 30px;
+  vertical-align: middle;
+  height: 100%; }
+.quiz .choice.selected {
+  opacity: 0.4; }
+
+/* GRAPH
+============================================================================= */
+.graph-wrapper {
+  width: 600px;
+  height: 600px; }
+
+.graph-overlay {
+  width: 100%;
+  height: 100%;
+  opacity: 0; }
+
+.venn-circle {
+  border-radius: 50%;
+  background-color: #a0a0a0;
+  opacity: 0.4;
+  position: absolute; }
+  .venn-circle:hover {
+    background-color: #9b5480; }
+  .venn-circle.hover {
+    background-color: #9b5480; }
 
 /* ANIMATIONS
 ============================================================================= */

@@ -48,6 +48,15 @@ angular.module("designpathApp")
 .controller("ExploreCtrl", [ "$scope", function ($scope) {
 
   console.log('Explore');
+
+  $scope.circles = [
+    { diameter: 380, top: 100, left: 0 },
+    { diameter: 290, top: 103, left: 150 },
+    { diameter: 290, top: 103, left: 190 },
+    { diameter: 290, top: 0, left: 270 },
+    { diameter: 300, top: 200, left: 265 }
+  ];
+
   $scope.pageClass = 'explore-page';
 
 }]);

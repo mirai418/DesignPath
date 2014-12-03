@@ -6,6 +6,7 @@ angular.module('designpathApp')
 
   .when("/", {
     title: "Home",
+    class: "home-page",
     templateUrl: "html/home.html",
     controller: "HomeCtrl"
   })
@@ -17,6 +18,7 @@ angular.module('designpathApp')
 
   .when("/quiz/:id", {
     title: "Quiz",
+    class: "quiz-page",
     templateUrl: "html/quiz.html",
     controller: "QuizCtrl"
   })
@@ -28,18 +30,21 @@ angular.module('designpathApp')
 
   .when("/outcome", {
     title: "Outcome",
+    class: "outcome-page",
     templateUrl: "html/outcome.html",
     controller: "OutcomeCtrl"
   })
 
   .when("/about", {
     title: "About",
+    class: "about-page",
     templateUrl: "html/about.html",
     controller: "AboutCtrl"
   })
 
   .when("/explore", {
     title: "Explore",
+    class: "explore-page",
     templateUrl: "html/explore.html",
     controller: "ExploreCtrl"
   })
@@ -61,8 +66,10 @@ angular.module('designpathApp')
   $rootScope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
     if (angular.isDefined(current.$$route)) {
       $rootScope.title = current.$$route.title;
+      $rootScope.class = current.$$route.class;
     } else {
       $rootScope.title = "";
+      $rootScope.class = "";
     }
   });
 

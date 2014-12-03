@@ -1,17 +1,17 @@
 <section class="header-padding">
 
-  <div class="contents center-text quiz">
+  <div class="contents center-text quiz v-margin-large">
 
     <nav class="quiz-nav clearfix">
       <div class="my-button small pull-left" ng-click="prevQuestion()">
-        &lt; Previous Question
+        &lt; Previous
       </div>
       <div class="my-button small pull-right" ng-click="nextQuestion()">
-        Next Question &gt;
+        Next &gt;
       </div>
     </nav>
 
-    <div class="prompt v-margin-x-large">
+<!--     <div class="prompt v-margin-x-large">
       <h2>{{question.prompt}}</h2>
     </div>
 
@@ -27,8 +27,23 @@
       <div class="my-button" ng-click="submitQuestion()">
         Submit Question
       </div>
+    </div> -->
+
+    <div class="prompt v-margin-x-large">
+      <h2>{{question.prompt}}</h2>
     </div>
 
+    <div class="choices-wrapper clearfix">
+
+      <div class="choice buttonize" ng-class="{'selected': question.selected[$index]}" ng-repeat="choice in question.choices" ng-click="question.selector($index)">
+        <h3 class="h-padding-large v-padding-large">{{choice}}</h3>
+      </div>
+
+    </div>
+
+    <div class="my-button v-margin-large" ng-click="question.evaluator(); submitQuestion();">
+      Submit Question
+    </div>
 
   </div>
 

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title ng-bind="title + ' | DESIGNPATH'">DESIGNPATH</title>
+  <title ng-bind="title + ' | DESIGN PATH'">DESIGN PATH</title>
 
   <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet', type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css'>
@@ -26,7 +26,7 @@
   <!-- include: "type": "js", "files": "js/designpath/*.js" -->
 
 </head>
-<body>
+<body class="{{class}}">
 
     <header>
       <div class="contents">
@@ -42,16 +42,14 @@
           </ul>
         </nav>
       </div>
-
     </header>
 
-    <article class="{{pageClass}}" ng-view></article>
+    <article ng-view></article>
 
     <footer>
       <div class="contents">
-        <p class="center-text">&copy; DESIGNPATH 2014</p>
+        <p class="center-text">&copy; DESIGN PATH 2014</p>
       </div>
-
     </footer>
 
 </body>
