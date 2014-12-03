@@ -1,0 +1,21 @@
+{
+  "name"         : "designpath",
+  "version"      : "0.0.0",
+  "description"  : "HELPING BUDDING DESIGNERS FIND THEIR CAREER PATH",
+  "main"         : "server.js",
+  "dependencies" : {
+    "express"         : "~4.6.1",
+    "morgan"          : "~1.1.1",
+    "body-parser"     : "~1.4.3",
+    "method-override" : "~2.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mirai418/DesignPath"
+  },
+  "author": "DesignPath",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mirai418/DesignPath/issues"
+  }
+}
