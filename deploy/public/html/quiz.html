@@ -1,34 +1,35 @@
+<section class="header-padding">
 
+  <div class="contents center-text quiz">
 
-<div class="page-contents quiz-wrapper">
+    <nav class="quiz-nav clearfix">
+      <div class="my-button small pull-left" ng-click="prevQuestion()">
+        &lt; Previous Question
+      </div>
+      <div class="my-button small pull-right" ng-click="nextQuestion()">
+        Next Question &gt;
+      </div>
+    </nav>
 
-  <nav class="quiz-nav clearfix">
-    <div class="my-button pull-left" ng-click="prevQuestion()">
-      &lt; Previous Question
+    <div class="prompt v-margin-x-large">
+      <h2>{{question.prompt}}</h2>
     </div>
-    <div class="my-button pull-right" ng-click="nextQuestion()">
-      Next Question &gt;
-    </div>
-  </nav>
 
-  <div class="question">
-    {{question.prompt}}
+    <div class="choices-wrapper clearfix">
+
+      <div class="choice buttonize" ng-class="{'selected': choice.selected}" ng-repeat="choice in question.choices" ng-click="choice.selected = !choice.selected">
+        <h3 class="abs-center vertically-center horizontally-center h-padding-large">{{choice.text}}</h3>
+      </div>
+
+    </div>
+
+    <div class="submit-answer-wrapper">
+      <div class="my-button" ng-click="submitQuestion()">
+        Submit Question
+      </div>
+    </div>
+
+
   </div>
 
-  <div class="choices-wrapper clearfix">
-
-    <div class="choice buttonize" ng-class="{'selected': choice.selected}" ng-repeat="choice in question.choices" ng-click="choice.selected = !choice.selected">
-      <p class="abs-center vertically-center horizontally-center">
-        {{choice.text}}
-      </p>
-    </div>
-
-  </div>
-
-  <div class="submit-answer-wrapper">
-    <div class="my-button" ng-click="submitQuestion()">
-      Submit Question
-    </div>
-  </div>
-
-</div>
+</section>
