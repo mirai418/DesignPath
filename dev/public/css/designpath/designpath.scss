@@ -161,7 +161,7 @@ header {
   position: fixed;
   height: $header-height;
   border-bottom: 1px solid $line-light-gray;
-  z-index: 10;
+  z-index: 100;
   top: 0;
   left: 0;
   right: 0;
@@ -199,6 +199,7 @@ footer {
   bottom: 0;
   height: $footer-height;
   border-top: 1px solid $line-light-gray;
+  background-color: rgba(255, 255, 255, 0.9);
 
   p {
     line-height: $footer-height;
@@ -322,6 +323,7 @@ section {
 .quiz-page, .outcome-page, .explore-page, .about-page {
   footer {
     position: fixed;
+    z-index: 100;
   }
 }
 
@@ -364,40 +366,69 @@ section {
 .graph-wrapper {
   width: 600px;
   height: 600px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .graph-overlay {
   width: 100%;
   height: 100%;
-  // background-color: transparent;
+  // background-color: #ff0000;;
+  background-color: transparent;
   opacity: 0;
+  // opacity: 1;
+  position: relative;
+  z-index: 20;
 }
 
 .venn-circle {
   border-radius: 50%;
-  // background-color: $theme-color;
-  background-color: #a0a0a0;
-  opacity: 0.4;
+  background-color: $theme-color;
+  // background-color: #d0d0d0;
+  opacity: 0.1;
+  // opacity: 1;
   position: absolute;
-  // z-index: 10;
-
-  &:hover {
-    // opacity: 0.2;
-    // background-color: lighten($turqoise, 20%);
-    background-color: $theme-color;
-    // z-index: 0;
-  }
+  z-index: 0;
 
   &.hover {
-    // opacity: 0.2;
+    opacity: 0.4;
     // background-color: lighten($turqoise, 20%);
     background-color: $theme-color;
-    // z-index: 0;
+    z-index: 1;
   }
 
 }
 
+.venn-circle-key {
+  // background-color: $theme-color;
+  // background-color: #d0d0d0;
+  // opacity: 0.1;
+  // opacity: 1;
+  position: absolute;
+  color: #999;
+  // z-index: 0;
 
+  &.hover {
+    // background-color: lighten($turqoise, 20%);
+    color: #666;
+    z-index: 2;
+    font-weight: bold;
+  }
+
+}
+
+.dot {
+  z-index: 2;
+  border-radius: 50%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: $white;
+
+  &:hover {
+    background-color: black;
+  }
+}
 
 
 /* ANIMATIONS

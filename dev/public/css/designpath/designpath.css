@@ -111,7 +111,7 @@ header {
   position: fixed;
   height: 60px;
   border-bottom: 1px solid #e0e0e0;
-  z-index: 10;
+  z-index: 100;
   top: 0;
   left: 0;
   right: 0;
@@ -137,7 +137,8 @@ header {
 footer {
   bottom: 0;
   height: 30px;
-  border-top: 1px solid #e0e0e0; }
+  border-top: 1px solid #e0e0e0;
+  background-color: rgba(255, 255, 255, 0.9); }
   footer p {
     line-height: 30px;
     letter-spacing: 1px;
@@ -214,7 +215,8 @@ section {
   vertical-align: middle; }
 
 .quiz-page footer, .outcome-page footer, .explore-page footer, .about-page footer {
-  position: fixed; }
+  position: fixed;
+  z-index: 100; }
 
 .quiz .choices-wrapper {
   text-align: center; }
@@ -235,22 +237,46 @@ section {
 ============================================================================= */
 .graph-wrapper {
   width: 600px;
-  height: 600px; }
+  height: 600px;
+  display: inline-block;
+  vertical-align: middle; }
 
 .graph-overlay {
   width: 100%;
   height: 100%;
-  opacity: 0; }
+  background-color: transparent;
+  opacity: 0;
+  position: relative;
+  z-index: 20; }
 
 .venn-circle {
   border-radius: 50%;
-  background-color: #a0a0a0;
-  opacity: 0.4;
-  position: absolute; }
-  .venn-circle:hover {
-    background-color: #9b5480; }
+  background-color: #9b5480;
+  opacity: 0.1;
+  position: absolute;
+  z-index: 0; }
   .venn-circle.hover {
-    background-color: #9b5480; }
+    opacity: 0.4;
+    background-color: #9b5480;
+    z-index: 1; }
+
+.venn-circle-key {
+  position: absolute;
+  color: #999; }
+  .venn-circle-key.hover {
+    color: #666;
+    z-index: 2;
+    font-weight: bold; }
+
+.dot {
+  z-index: 2;
+  border-radius: 50%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white; }
+  .dot:hover {
+    background-color: black; }
 
 /* ANIMATIONS
 ============================================================================= */

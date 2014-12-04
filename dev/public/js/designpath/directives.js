@@ -8,6 +8,7 @@ angular.module("designpathApp")
 
     scope: {
       circles: '=',
+      dots: '=',
     },
 
     link: function(scope, iElm, iAttrs, controller) {
@@ -26,7 +27,7 @@ angular.module("designpathApp")
       };
 
       scope.mouseMove = function (event) {
-        console.log(event.offsetX + ", " + event.offsetY);
+        // console.log(event.offsetX + ", " + event.offsetY);
         var x = event.offsetX;
         var y = event.offsetY;
         angular.forEach(scope.circles, function (circle) {
@@ -49,18 +50,28 @@ angular.module("designpathApp")
     },
 
     link: function(scope, iElm, iAttrs, controller) {
-      console.log('sup');
 
-      // scope.mouseEnter = function (event) {
-      //   console.log(scope.$id +  ' enter');
-      //   // console.log(event);
-      //   scope.hover = true;
-      // };
+      scope.getKeyStyle = function () {
+        if (scope.circle.keyPlace == "NE") {
+          return { 'top': (scope.circle.top + scope.circle.diameter / 10) + 'px',
+                   'left': (scope.circle.left + scope.circle.diameter - scope.circle.diameter / 10) + 'px'
+                 };
+        } else if (scope.circle.keyPlace == "SE") {
+          return { 'top': (scope.circle.top + scope.circle.diameter - scope.circle.diameter / 10) + 'px',
+                   'left': (scope.circle.left + scope.circle.diameter - scope.circle.diameter / 10 - 40) + 'px'
+                 };
+        } else if (scope.circle.keyPlace == "SW") {
+          return { 'top': (scope.circle.top + scope.circle.diameter - scope.circle.diameter / 10) + 'px',
+                   'left': (scope.circle.left + scope.circle.diameter / 10 - 40) + 'px'
+                 };
+        } else {
+          return { 'top': (scope.circle.top + scope.circle.diameter / 10) + 'px',
+                   'left': (scope.circle.left + scope.circle.diameter / 10 - 40) + 'px'
+                 };
+        }
 
-      // scope.mouseLeave = function (event) {
-      //   console.log(scope.$id +  ' leave');
-      //   // scope.hover = false;
-      // };
+
+      };
 
     }
   };

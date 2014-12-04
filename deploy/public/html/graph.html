@@ -1,9 +1,11 @@
-<div class="graph-wrapper position-relative" style="height: 600px; width:600px;">
+<div class="graph-wrapper position-relative">
 
-  <venn-circle ng-repeat="circle in circles" circle="circle"></venn-circle>
+  <venn-circle ng-repeat="circle in circles" circle="circle" style="z-index:2;"></venn-circle>
 
-  <div class="graph-overlay" ng-mousemove="mouseMove($event)">
-    
-  </div>
+  <div class="dot" ng-repeat="dot in dots" ng-style="{ 'top': (dot.y - 5) + 'px',
+                                                       'left': (dot.x - 5) + 'px'
+                                    }"></div>
+
+  <div class="graph-overlay" ng-mousemove="mouseMove($event)"></div>
 
 </div>
