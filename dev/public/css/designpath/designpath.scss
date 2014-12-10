@@ -5,6 +5,7 @@ $line-gray: #a0a0a0;
 $line-light-gray: #e0e0e0;
 $gray-background: #f7f7f7;
 $white: #ffffff;
+$black: #000000;
 
 $header-height: 60px;
 $footer-height: 30px;
@@ -63,6 +64,10 @@ h4 {
 
 h5 {
   font-size: 18px;
+}
+
+small {
+  font-size: 90%;
 }
 
 a, a:hover, a:active, a:visited {
@@ -150,6 +155,32 @@ a:hover {
   opacity: 0.7;
 }
 
+.sandwich-lines-white {
+  border-top: 1px solid $line-gray;
+  border-bottom: 1px solid $line-gray;
+}
+
+.sandwich-lines-gray {
+  border-top: 1px solid $line-gray;
+  border-bottom: 1px solid $line-gray;
+}
+
+.white-color {
+  color: $white;
+}
+
+.gray-color {
+  color: $line-gray;
+}
+
+.black-color {
+  color: $black;
+}
+
+.theme-color {
+  color: $theme-color;
+}
+
 /* WRAPPER STYLES
 ============================================================================= */
 
@@ -216,7 +247,6 @@ footer {
 }
 
 section {
-  min-height: 440px;
   overflow-y: hidden;
 
   &.white-background {
@@ -241,6 +271,20 @@ section {
     width: 400px;
   }
 
+  &.banner {
+    background-repeat:no-repeat;
+    background-size:cover;
+    height: 420px;
+  }
+
+  &.about-banner {
+    background-image:url('/images/about-banner.jpg');
+  }
+
+  &.home-banner {
+    background-image:url('/images/home-banner.png');
+  }
+
 }
 
 .home-page {
@@ -249,10 +293,6 @@ section {
 
 .main-catch {
   color: $white;
-
-  .main-catch-img {
-    min-width: 100%;
-  }
 
   .main-catch-text {
     padding-top: 110px;
@@ -280,6 +320,7 @@ section {
   width: 33.33%;
   display: inline-block;
   text-align: center;
+  vertical-align: top;
 }
 
 .circle-image {

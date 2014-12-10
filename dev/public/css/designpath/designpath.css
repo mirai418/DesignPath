@@ -42,6 +42,9 @@ h4 {
 h5 {
   font-size: 18px; }
 
+small {
+  font-size: 90%; }
+
 a, a:hover, a:active, a:visited {
   text-decoration: none; }
 
@@ -102,6 +105,26 @@ a:hover {
 .buttonize:hover {
   opacity: 0.7; }
 
+.sandwich-lines-white {
+  border-top: 1px solid #a0a0a0;
+  border-bottom: 1px solid #a0a0a0; }
+
+.sandwich-lines-gray {
+  border-top: 1px solid #a0a0a0;
+  border-bottom: 1px solid #a0a0a0; }
+
+.white-color {
+  color: white; }
+
+.gray-color {
+  color: #a0a0a0; }
+
+.black-color {
+  color: black; }
+
+.theme-color {
+  color: #9b5480; }
+
 /* WRAPPER STYLES
 ============================================================================= */
 header, article, footer {
@@ -150,7 +173,6 @@ footer {
   margin-right: auto; }
 
 section {
-  min-height: 440px;
   overflow-y: hidden; }
   section.white-background {
     background-color: white; }
@@ -164,14 +186,20 @@ section {
     width: 600px; }
   section .narrow-width {
     width: 400px; }
+  section.banner {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 420px; }
+  section.about-banner {
+    background-image: url("/images/about-banner.jpg"); }
+  section.home-banner {
+    background-image: url("/images/home-banner.png"); }
 
 .home-page {
   height: 100%; }
 
 .main-catch {
   color: white; }
-  .main-catch .main-catch-img {
-    min-width: 100%; }
   .main-catch .main-catch-text {
     padding-top: 110px;
     padding-bottom: 70px; }
@@ -188,7 +216,8 @@ section {
 .three-col {
   width: 33.33%;
   display: inline-block;
-  text-align: center; }
+  text-align: center;
+  vertical-align: top; }
 
 .circle-image {
   width: 250px; }
