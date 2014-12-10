@@ -116,11 +116,11 @@ angular.module('designpathApp')
       prompt: 'Select the statement which best describes you.',
       choices: [
         {
-          text: 'I solve problems by leaping between different ideas and possibilities',
+          text: 'I make my best decisions by weighing the points-of-view of others',
           image: '/images/quiz/3.png'
         },
         {
-          text: 'I solve problems by working through facts until I solve the problem',
+          text: 'I analyze pros and cons to be consistent and logical in deciding',
           image: '/images/quiz/4.png'
         }
       ],
@@ -163,19 +163,19 @@ angular.module('designpathApp')
       prompt: 'Select the statement which best describes you.',
       choices: [
         {
-          text: 'I solve problems by leaping between different ideas and possibilities',
+          text: 'I think more about what can be done now, then what might happen in the future', // sensory
           image: '/images/quiz/5.png'
         },
         {
-          text: 'I solve problems by working through facts until I solve the problem',
-          image: '/images/quiz/6.png'
+          text: 'I think more about the future than the present',
+          image: '/images/quiz/6.png' // intuitive perception
         }
       ],
       evaluator: function () {
         if (this.selected[0]) {
           quiz.outcome.macro += 1;
           quiz.outcome.micro += 1;
-          quiz.outcome.research += 1;
+          quiz.outcome.research += 0;
           quiz.outcome.business += 0;
           quiz.outcome.visual += 2;
           quiz.outcome.implementation += 0;
@@ -186,14 +186,6 @@ angular.module('designpathApp')
           quiz.outcome.business += 2;
           quiz.outcome.visual += 0;
           quiz.outcome.implementation += 2;
-        } else if (this.selected[2]) {
-          quiz.outcome.macro += 2;
-          quiz.outcome.micro += 2;
-          quiz.outcome.research += 2;
-          quiz.outcome.business += 1;
-          quiz.outcome.visual += 1;
-          quiz.outcome.implementation += 1;
-        } else if (this.selected[3]) {
         }
       },
       selector: function (index) {
@@ -210,19 +202,19 @@ angular.module('designpathApp')
       prompt: 'Select the statement which best describes you.',
       choices: [
         {
-          text: 'I solve problems by leaping between different ideas and possibilities',
-          image: '/images/quiz/7.png'
+          text: 'I start with facts, and only then do I form the big picture',
+          image: '/images/quiz/7.png' // sensory
         },
         {
-          text: 'I solve problems by working through facts until I solve the problem',
-          image: '/images/quiz/8.png'
+          text: 'I “read between the lines” when forming the big picture',
+          image: '/images/quiz/8.png' // intuitive
         }
       ],
       evaluator: function () {
         if (this.selected[0]) {
           quiz.outcome.macro += 1;
           quiz.outcome.micro += 1;
-          quiz.outcome.research += 1;
+          quiz.outcome.research += 0;
           quiz.outcome.business += 0;
           quiz.outcome.visual += 2;
           quiz.outcome.implementation += 0;
@@ -233,14 +225,6 @@ angular.module('designpathApp')
           quiz.outcome.business += 2;
           quiz.outcome.visual += 0;
           quiz.outcome.implementation += 2;
-        } else if (this.selected[2]) {
-          quiz.outcome.macro += 2;
-          quiz.outcome.micro += 2;
-          quiz.outcome.research += 2;
-          quiz.outcome.business += 1;
-          quiz.outcome.visual += 1;
-          quiz.outcome.implementation += 1;
-        } else if (this.selected[3]) {
         }
       },
       selector: function (index) {
@@ -257,12 +241,12 @@ angular.module('designpathApp')
       prompt: 'Select the statement which best describes you.',
       choices: [
         {
-          text: 'I solve problems by leaping between different ideas and possibilities',
+          text: 'I’m happiest when I’m analyzing the components of complex problems', // abstract orine
           image: '/images/quiz/9.png'
         },
         {
-          text: 'I solve problems by working through facts until I solve the problem',
-          image: '/images/quiz/10.png'
+          text: 'I’m happiest when I’m creating concrete solutions to abstract problems',
+          image: '/images/quiz/10.png' // concrete orient
         }
       ],
       evaluator: function () {
@@ -270,24 +254,16 @@ angular.module('designpathApp')
           quiz.outcome.macro += 1;
           quiz.outcome.micro += 1;
           quiz.outcome.research += 1;
-          quiz.outcome.business += 0;
-          quiz.outcome.visual += 2;
+          quiz.outcome.business += 3;
+          quiz.outcome.visual += 0;
           quiz.outcome.implementation += 0;
         } else if (this.selected[1]) {
           quiz.outcome.macro += 1;
           quiz.outcome.micro += 1;
           quiz.outcome.research += 1;
           quiz.outcome.business += 2;
-          quiz.outcome.visual += 0;
+          quiz.outcome.visual += 2;
           quiz.outcome.implementation += 2;
-        } else if (this.selected[2]) {
-          quiz.outcome.macro += 2;
-          quiz.outcome.micro += 2;
-          quiz.outcome.research += 2;
-          quiz.outcome.business += 1;
-          quiz.outcome.visual += 1;
-          quiz.outcome.implementation += 1;
-        } else if (this.selected[3]) {
         }
       },
       selector: function (index) {
@@ -304,11 +280,11 @@ angular.module('designpathApp')
       prompt: 'Select the statement which best describes you.',
       choices: [
         {
-          text: 'I solve problems by leaping between different ideas and possibilities',
+          text: 'I like working with People; mentoring, observing, and cultivating relationships', // with people
           image: '/images/quiz/11.png'
         },
         {
-          text: 'I solve problems by working through facts until I solve the problem',
+          text: 'I like working with Information: brainstorming ideas and analyzing', // with info
           image: '/images/quiz/12.png'
         }
       ],
@@ -317,8 +293,8 @@ angular.module('designpathApp')
           quiz.outcome.macro += 1;
           quiz.outcome.micro += 1;
           quiz.outcome.research += 1;
-          quiz.outcome.business += 0;
-          quiz.outcome.visual += 2;
+          quiz.outcome.business += 3;
+          quiz.outcome.visual += 1;
           quiz.outcome.implementation += 0;
         } else if (this.selected[1]) {
           quiz.outcome.macro += 1;
@@ -326,15 +302,7 @@ angular.module('designpathApp')
           quiz.outcome.research += 1;
           quiz.outcome.business += 2;
           quiz.outcome.visual += 0;
-          quiz.outcome.implementation += 2;
-        } else if (this.selected[2]) {
-          quiz.outcome.macro += 2;
-          quiz.outcome.micro += 2;
-          quiz.outcome.research += 2;
-          quiz.outcome.business += 1;
-          quiz.outcome.visual += 1;
-          quiz.outcome.implementation += 1;
-        } else if (this.selected[3]) {
+          quiz.outcome.implementation += 3;
         }
       },
       selector: function (index) {
@@ -361,10 +329,10 @@ angular.module('designpathApp')
       ],
       evaluator: function () {
         if (this.selected[0]) {
-          quiz.outcome.macro += 0;
+          quiz.outcome.macro += 1;
           quiz.outcome.micro += 0;
           quiz.outcome.research += 0;
-          quiz.outcome.business += 2;
+          quiz.outcome.business += 3;
           quiz.outcome.visual += 0;
           quiz.outcome.implementation += 2;
         } else if (this.selected[1]) {
@@ -374,14 +342,6 @@ angular.module('designpathApp')
           quiz.outcome.business += 0;
           quiz.outcome.visual += 2;
           quiz.outcome.implementation += 0;
-        } else if (this.selected[2]) {
-          quiz.outcome.macro += 0;
-          quiz.outcome.micro += 0;
-          quiz.outcome.research += 0;
-          quiz.outcome.business += 1;
-          quiz.outcome.visual += 1;
-          quiz.outcome.implementation += 1;
-        } else if (this.selected[3]) {
         }
       },
       selector: function (index) {
@@ -416,7 +376,7 @@ angular.module('designpathApp')
           quiz.outcome.implementation += 2;
         } else if (this.selected[1]) {
           quiz.outcome.macro += 0;
-          quiz.outcome.micro += 0;
+          quiz.outcome.micro += 1;
           quiz.outcome.research += 0;
           quiz.outcome.business += 0;
           quiz.outcome.visual += 2;
