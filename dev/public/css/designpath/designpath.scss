@@ -46,7 +46,7 @@ h2, h3, h4, h6 {
   font-weight: 300;
 }
 
-h2, h4 {
+h2 {
   color: $theme-color;
 }
 
@@ -257,20 +257,6 @@ section {
     background-color: $gray-background;
   }
 
-  .section-image {
-    position: absolute;
-    z-index: -1;
-    overflow: hidden;
-  }
-
-  .medium-width {
-    width: 600px;
-  }
-
-  .narrow-width {
-    width: 400px;
-  }
-
   &.banner {
     background-repeat:no-repeat;
     background-size:cover;
@@ -283,6 +269,35 @@ section {
 
   &.home-banner {
     background-image:url('/images/home-banner.png');
+  }
+
+  .medium-width {
+    width: 600px;
+  }
+
+  .narrow-width {
+    width: 400px;
+  }
+
+  .box {
+    border: 1px solid $theme-color;
+  }
+
+  .three-col {
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+
+    .circle-image {
+      width: 250px;
+
+      &:hover {
+        opacity: 0.7;
+      }
+
+    }
+
   }
 
 }
@@ -316,19 +331,8 @@ section {
 
 }
 
-.three-col {
-  width: 33.33%;
-  display: inline-block;
-  text-align: center;
-  vertical-align: top;
-}
-
-.circle-image {
-  width: 250px;
-}
-
 .output-text-col {
-  width: 30%;
+  width: 33%;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
@@ -341,7 +345,6 @@ section {
 
     h3 {
       font-size: 17px;
-      margin-bottom: 8px;
     }
 
     h4 {
@@ -406,7 +409,7 @@ section {
 
 .graph-wrapper {
   width: 600px;
-  height: 600px;
+  height: 540px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -441,16 +444,11 @@ section {
 }
 
 .venn-circle-key {
-  // background-color: $theme-color;
-  // background-color: #d0d0d0;
-  // opacity: 0.1;
-  // opacity: 1;
   position: absolute;
   color: #999;
-  // z-index: 0;
+  text-transform: uppercase;
 
   &.hover {
-    // background-color: lighten($turqoise, 20%);
     color: #666;
     z-index: 2;
     font-weight: bold;

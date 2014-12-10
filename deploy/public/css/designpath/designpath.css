@@ -27,7 +27,7 @@ h2, h3, h4, h6 {
   font-family: 'Merriweather', serif;
   font-weight: 300; }
 
-h2, h4 {
+h2 {
   color: #9b5480; }
 
 h2 {
@@ -178,14 +178,6 @@ section {
     background-color: white; }
   section.gray-background {
     background-color: #f7f7f7; }
-  section .section-image {
-    position: absolute;
-    z-index: -1;
-    overflow: hidden; }
-  section .medium-width {
-    width: 600px; }
-  section .narrow-width {
-    width: 400px; }
   section.banner {
     background-repeat: no-repeat;
     background-size: cover;
@@ -194,6 +186,21 @@ section {
     background-image: url("/images/about-banner.jpg"); }
   section.home-banner {
     background-image: url("/images/home-banner.png"); }
+  section .medium-width {
+    width: 600px; }
+  section .narrow-width {
+    width: 400px; }
+  section .box {
+    border: 1px solid #9b5480; }
+  section .three-col {
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top; }
+    section .three-col .circle-image {
+      width: 250px; }
+      section .three-col .circle-image:hover {
+        opacity: 0.7; }
 
 .home-page {
   height: 100%; }
@@ -213,17 +220,8 @@ section {
       border-top: 1px solid #a0a0a0;
       border-bottom: 1px solid #a0a0a0; }
 
-.three-col {
-  width: 33.33%;
-  display: inline-block;
-  text-align: center;
-  vertical-align: top; }
-
-.circle-image {
-  width: 250px; }
-
 .output-text-col {
-  width: 30%;
+  width: 33%;
   display: inline-block;
   text-align: center;
   vertical-align: middle; }
@@ -232,8 +230,7 @@ section {
     border-top: 1px solid #9b5480;
     border-bottom: 1px solid #9b5480; }
     .output-text-col .output-text h3 {
-      font-size: 17px;
-      margin-bottom: 8px; }
+      font-size: 17px; }
     .output-text-col .output-text h4 {
       font-size: 12px; }
     .output-text-col .output-text h6 {
@@ -266,7 +263,7 @@ section {
 ============================================================================= */
 .graph-wrapper {
   width: 600px;
-  height: 600px;
+  height: 540px;
   display: inline-block;
   vertical-align: middle; }
 
@@ -291,7 +288,8 @@ section {
 
 .venn-circle-key {
   position: absolute;
-  color: #999; }
+  color: #999;
+  text-transform: uppercase; }
   .venn-circle-key.hover {
     color: #666;
     z-index: 2;
