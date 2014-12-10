@@ -3,7 +3,7 @@
                                      'top': circle.top + 'px',
                                      'left': circle.left + 'px'
                                     }"
-                         ng-class="{'hover': circle.hover}">
+                         ng-class="{'hover': circle.alwaysHover || circle.hover}">
 </div>
 <p class="venn-circle-key" ng-style="getKeyStyle()"
-                           ng-class="{'hover': circle.hover}">{{circle.key}}</p>
+                           ng-class="{'hover': circle.alwaysHover || circle.hover}">{{circle.key}}</p>

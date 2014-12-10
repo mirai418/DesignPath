@@ -37,12 +37,12 @@ angular.module("designpathApp")
   $scope.outcome = QuizService.getOutcome();
 
   $scope.circles = [
-    { key: 'Research', keyPlace: 'NW', diameter: 380, top: 100, left: 0 },
-    { key: 'UX Macro', keyPlace: 'NW', diameter: 290, top: 103, left: 150 },
-    { key: 'UX Micro', keyPlace: 'NE', diameter: 290, top: 103, left: 190 },
-    { key: 'Visual', keyPlace: 'NE', diameter: 290, top: 0, left: 270 },
-    { key: 'Implementation', keyPlace: 'SE', diameter: 300, top: 200, left: 265 },
-    { key: 'Business', keyPlace: 'SW', diameter: 370, top: 150, left: 180 }
+    { key: 'research', keyPlace: 'NW', diameter: 380, top: 100, left: 0 },
+    { key: 'macro', keyPlace: 'NW', diameter: 290, top: 103, left: 150 },
+    { key: 'micro', keyPlace: 'NE', diameter: 290, top: 103, left: 190 },
+    { key: 'visual', keyPlace: 'NE', diameter: 290, top: 0, left: 270 },
+    { key: 'implementation', keyPlace: 'SE', diameter: 300, top: 200, left: 265 },
+    { key: 'business', keyPlace: 'SW', diameter: 370, top: 150, left: 180 }
   ];
 
   $scope.dots = [
@@ -57,6 +57,13 @@ angular.module("designpathApp")
     { x: 410, y: 220, title:'concrete'},
     { x: 410, y: 275, title:'information'}
   ];
+
+  for (var i = 0; i < $scope.circles.length; i++) {
+    if ($scope.circles[i].key === $scope.outcome.pk) {
+      console.log('asdf');
+      $scope.circles[i].alwaysHover = true;
+    }
+  }
 
 
 }])

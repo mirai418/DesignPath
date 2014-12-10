@@ -244,20 +244,48 @@ section {
   position: fixed;
   z-index: 100; }
 
+.quiz .prompt {
+  margin: 80px; }
 .quiz .choices-wrapper {
   text-align: center; }
-.quiz .choice {
-  position: relative;
-  border: 1px solid #00907c;
-  color: #00907c;
-  display: inline-block;
-  margin: 10px;
-  width: 40%;
-  padding: 30px;
-  vertical-align: middle;
-  height: 100%; }
-.quiz .choice.selected {
-  opacity: 0.4; }
+  .quiz .choices-wrapper .choice {
+    position: relative;
+    border: 1px solid #e0e0e0;
+    color: black;
+    display: inline-block;
+    margin: 10px;
+    width: 38%;
+    padding: 20px;
+    vertical-align: middle;
+    height: 100%;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(white 0%), to(#f7f7f7 100%));
+    background-image: -webkit-linear-gradient(top, white 0%, #f7f7f7 100%);
+    background-image: -moz-linear-gradient(top, white 0%, #f7f7f7 100%);
+    background-image: -ms-linear-gradient(top, white 0%, #f7f7f7 100%);
+    background-image: -o-linear-gradient(top, white 0%, #f7f7f7 100%);
+    background-image: linear-gradient(top, white 0%, #f7f7f7 100%); }
+    .quiz .choices-wrapper .choice.selected {
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7 0%), to(#e0e0e0 100%));
+      background-image: -webkit-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+      background-image: -moz-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+      background-image: -ms-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+      background-image: -o-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+      background-image: linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%); }
+    .quiz .choices-wrapper .choice h3 {
+      border-top: 1px solid #e0e0e0; }
+    .quiz .choices-wrapper .choice img {
+      height: 80px; }
+  .quiz .choices-wrapper .quiz-nav {
+    position: relative;
+    top: -130px; }
+    .quiz .choices-wrapper .quiz-nav .my-button {
+      background-color: #CBCBCB;
+      height: 38px;
+      width: 38px;
+      line-height: 38px;
+      padding: 0; }
+      .quiz .choices-wrapper .quiz-nav .my-button:hover {
+        background-color: #E0E0E0; }
 
 /* GRAPH
 ============================================================================= */
