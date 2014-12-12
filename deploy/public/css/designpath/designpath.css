@@ -1,11 +1,7 @@
-/* BASE STYLES
+/* SASS VARIABLES
 ============================================================================= */
-/*background: #00D0BC;*/
-/*color:#00907c;*/
-/*background:#E59400;*/
-/*color:#a55400;*/
-/*background:#ffa6bb;*/
-/*color:#a55400;*/
+/* UTILITY STYLES
+============================================================================= */
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -16,6 +12,44 @@
 .clearfix:after {
   clear: both; }
 
+.full-height {
+  height: 100%; }
+
+.full-width {
+  width: 100%; }
+
+.position-relative {
+  position: relative; }
+
+.center-text {
+  text-align: center; }
+
+.margin-auto {
+  margin-left: auto;
+  margin-right: auto; }
+
+.sandwich-lines-white {
+  border-top: 1px solid #a0a0a0;
+  border-bottom: 1px solid #a0a0a0; }
+
+.sandwich-lines-gray {
+  border-top: 1px solid #a0a0a0;
+  border-bottom: 1px solid #a0a0a0; }
+
+.white-color {
+  color: white; }
+
+.gray-color {
+  color: #a0a0a0; }
+
+.black-color {
+  color: black; }
+
+.theme-color {
+  color: #9b5480; }
+
+/* BASE STYLES
+============================================================================= */
 html, body {
   font-family: 'Lato', Helvetica Neue, sans-serif;
   font-weight: 300;
@@ -45,35 +79,25 @@ h5 {
 small {
   font-size: 90%; }
 
-a, a:hover, a:active, a:visited {
+a {
+  color: #00907c;
   text-decoration: none; }
+  a a:hover, a a:active, a a:visited {
+    text-decoration: none; }
+  a:hover, a:active {
+    color: #00d0bc; }
+  a a:visited {
+    color: #00907c; }
 
-a.non-styling, a.non-styling:hover, a.non-styling:active, a.non-styling:visited {
+a.non-styling {
   text-decoration: none;
   color: inherit; }
+  a.non-styling:hover, a.non-styling:active, a.non-styling:visited {
+    text-decoration: none;
+    color: inherit; }
 
-a {
-  color: #00907c; }
-
-a:hover {
-  color: #00D0BC; }
-
-.full-height {
-  height: 100%; }
-
-.full-width {
-  width: 100%; }
-
-.position-relative {
-  position: relative; }
-
-.center-text {
-  text-align: center; }
-
-.margin-auto {
-  margin-left: auto;
-  margin-right: auto; }
-
+/* BUTTON STYLES
+============================================================================= */
 .my-button {
   padding: 4px 14px;
   background-color: #9b5480;
@@ -105,30 +129,18 @@ a:hover {
 .buttonize:hover {
   opacity: 0.7; }
 
-.sandwich-lines-white {
-  border-top: 1px solid #a0a0a0;
-  border-bottom: 1px solid #a0a0a0; }
-
-.sandwich-lines-gray {
-  border-top: 1px solid #a0a0a0;
-  border-bottom: 1px solid #a0a0a0; }
-
-.white-color {
-  color: white; }
-
-.gray-color {
-  color: #a0a0a0; }
-
-.black-color {
-  color: black; }
-
-.theme-color {
-  color: #9b5480; }
-
 /* WRAPPER STYLES
 ============================================================================= */
 header, article, footer {
   width: 100%; }
+
+.header-padding {
+  padding-top: 60px; }
+
+.contents {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto; }
 
 header {
   position: fixed;
@@ -143,8 +155,8 @@ header {
     margin-top: 10px;
     height: 40px;
     float: left; }
-  header img.logo:hover {
-    opacity: 0.6; }
+    header img.logo:hover {
+      opacity: 0.6; }
   header nav {
     float: right; }
   header nav ul li {
@@ -153,9 +165,6 @@ header {
     font-size: 1.1em;
     line-height: 60px;
     letter-spacing: 1px; }
-
-.header-padding {
-  padding-top: 60px; }
 
 footer {
   bottom: 0;
@@ -166,11 +175,6 @@ footer {
     line-height: 30px;
     letter-spacing: 1px;
     font-size: 13px; }
-
-.contents {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto; }
 
 section {
   overflow-y: hidden; }
@@ -193,17 +197,25 @@ section {
   section .box {
     border: 1px solid #9b5480; }
   section .three-col {
+    position: relative;
     width: 33%;
     display: inline-block;
     text-align: center;
     vertical-align: top; }
     section .three-col .circle-image {
       width: 250px; }
-      section .three-col .circle-image:hover {
-        opacity: 0.7; }
-
-.home-page {
-  height: 100%; }
+      section .three-col .circle-image.hover:hover {
+        opacity: 0.4; }
+      section .three-col .circle-image.hover:hover + .on-hover-text {
+        visibility: visible; }
+    section .three-col .on-hover-text {
+      visibility: hidden;
+      position: absolute;
+      width: 100%;
+      top: 100px;
+      pointer-events: none; }
+      section .three-col .on-hover-text:hover {
+        visibility: visible; }
 
 .main-catch {
   color: white; }
@@ -220,30 +232,12 @@ section {
       border-top: 1px solid #a0a0a0;
       border-bottom: 1px solid #a0a0a0; }
 
-.output-text-col {
-  width: 33%;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle; }
-  .output-text-col .output-text {
-    text-align: left;
-    border-top: 1px solid #9b5480;
-    border-bottom: 1px solid #9b5480; }
-    .output-text-col .output-text h3 {
-      font-size: 17px; }
-    .output-text-col .output-text h4 {
-      font-size: 12px; }
-    .output-text-col .output-text h6 {
-      font-size: 15px; }
-
-.example-output {
-  width: 540px;
-  vertical-align: middle; }
-
-.quiz-page footer, .outcome-page footer, .explore-page footer, .about-page footer {
+.quiz-page footer {
   position: fixed;
   z-index: 100; }
 
+/* QUIZ STYLES
+============================================================================= */
 .quiz .prompt {
   margin: 80px; }
 .quiz .choices-wrapper {
@@ -277,7 +271,8 @@ section {
       height: 80px; }
   .quiz .choices-wrapper .quiz-nav {
     position: relative;
-    top: -130px; }
+    top: -130px;
+    pointer-events: none; }
     .quiz .choices-wrapper .quiz-nav .my-button {
       background-color: #CBCBCB;
       height: 38px;
@@ -287,7 +282,30 @@ section {
       .quiz .choices-wrapper .quiz-nav .my-button:hover {
         background-color: #E0E0E0; }
 
-/* GRAPH
+/* OUTCOME TEXT STYLES
+============================================================================= */
+.output-text-col {
+  width: 33%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle; }
+  .output-text-col .output-text {
+    text-align: left;
+    border-top: 1px solid #9b5480;
+    border-bottom: 1px solid #9b5480; }
+    .output-text-col .output-text h3 {
+      font-size: 17px; }
+    .output-text-col .output-text h4 {
+      font-size: 12px;
+      line-height: 1.5; }
+    .output-text-col .output-text h6 {
+      font-size: 15px; }
+
+.example-output {
+  width: 540px;
+  vertical-align: middle; }
+
+/* GRAPH STYLES
 ============================================================================= */
 .graph-wrapper {
   width: 600px;

@@ -1,6 +1,10 @@
 
+/* SASS VARIABLES
+============================================================================= */
+
 $theme-color: #9b5480;
-$turqoise: #00907c;
+$link-color: #00907c;
+$link-hover-color: #00D0BC;
 $line-gray: #a0a0a0;
 $line-light-gray: #e0e0e0;
 $gray-background: #f7f7f7;
@@ -10,18 +14,20 @@ $black: #000000;
 $header-height: 60px;
 $footer-height: 30px;
 $logo-height: 40px;
+$circle-image-diameter: 250px;
 
-/* BASE STYLES
+@mixin background-image($from, $to) {
+  background-image: -webkit-gradient(linear,left top,left bottom,from($from),to($to));
+  background-image: -webkit-linear-gradient(top,$from,$to);
+  background-image: -moz-linear-gradient(top,$from,$to);
+  background-image: -ms-linear-gradient(top,$from,$to);
+  background-image: -o-linear-gradient(top,$from,$to);
+  background-image: linear-gradient(top,$from,$to);
+}
+
+
+/* UTILITY STYLES
 ============================================================================= */
-
-  /*background: #00D0BC;*/
-  /*color:#00907c;*/
-
-  /*background:#E59400;*/
-  /*color:#a55400;*/
-
-  /*background:#ffa6bb;*/
-  /*color:#a55400;*/
 
 .clearfix:before,
 .clearfix:after {
@@ -32,6 +38,56 @@ $logo-height: 40px;
 .clearfix:after {
     clear: both;
 }
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.position-relative{
+  position: relative;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.margin-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sandwich-lines-white {
+  border-top: 1px solid $line-gray;
+  border-bottom: 1px solid $line-gray;
+}
+
+.sandwich-lines-gray {
+  border-top: 1px solid $line-gray;
+  border-bottom: 1px solid $line-gray;
+}
+
+.white-color {
+  color: $white;
+}
+
+.gray-color {
+  color: $line-gray;
+}
+
+.black-color {
+  color: $black;
+}
+
+.theme-color {
+  color: $theme-color;
+}
+
+/* BASE STYLES
+============================================================================= */
 
 html, body {
   font-family: 'Lato', Helvetica Neue, sans-serif;
@@ -70,43 +126,37 @@ small {
   font-size: 90%;
 }
 
-a, a:hover, a:active, a:visited {
+a {
+  color: $link-color;
   text-decoration: none;
+
+  a:hover, a:active, a:visited {
+    text-decoration: none;
+  }
+
+  &:hover, &:active {
+    color: $link-hover-color;
+  }
+
+  a:visited {
+    color: $link-color;
+  }
+
 }
 
-a.non-styling, a.non-styling:hover, a.non-styling:active, a.non-styling:visited {
+a.non-styling {
   text-decoration: none;
   color: inherit;
+
+  &:hover, &:active, &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
-a {
-  color: #00907c;
-}
 
-a:hover {
-  color: #00D0BC;
-}
-
-.full-height {
-  height: 100%;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.position-relative{
-  position: relative;
-}
-
-.center-text {
-  text-align: center;
-}
-
-.margin-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
+/* BUTTON STYLES
+============================================================================= */
 
 .my-button {
   padding: 4px 14px;
@@ -155,37 +205,22 @@ a:hover {
   opacity: 0.7;
 }
 
-.sandwich-lines-white {
-  border-top: 1px solid $line-gray;
-  border-bottom: 1px solid $line-gray;
-}
-
-.sandwich-lines-gray {
-  border-top: 1px solid $line-gray;
-  border-bottom: 1px solid $line-gray;
-}
-
-.white-color {
-  color: $white;
-}
-
-.gray-color {
-  color: $line-gray;
-}
-
-.black-color {
-  color: $black;
-}
-
-.theme-color {
-  color: $theme-color;
-}
 
 /* WRAPPER STYLES
 ============================================================================= */
 
 header, article, footer {
   width: 100%;
+}
+
+.header-padding {
+  padding-top: $header-height;
+}
+
+.contents {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header {
@@ -202,10 +237,11 @@ header {
     margin-top: ($header-height - $logo-height) / 2;
     height: $logo-height;
     float: left;
-  }
 
-  img.logo:hover {
-    opacity: 0.6;
+    &:hover {
+      opacity: 0.6;
+    }
+
   }
 
   nav {
@@ -222,10 +258,6 @@ header {
 
 }
 
-.header-padding {
-  padding-top: $header-height;
-}
-
 footer {
   bottom: 0;
   height: $footer-height;
@@ -238,12 +270,6 @@ footer {
     font-size: 13px;
   }
 
-}
-
-.contents {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 section {
@@ -284,26 +310,39 @@ section {
   }
 
   .three-col {
+    position: relative;
     width: 33%;
     display: inline-block;
     text-align: center;
     vertical-align: top;
 
     .circle-image {
-      width: 250px;
+      width: $circle-image-diameter;
 
-      &:hover {
-        opacity: 0.7;
+      &.hover:hover {
+        opacity: 0.4;
+      }
+
+      &.hover:hover + .on-hover-text {
+        visibility: visible;
       }
 
     }
 
+    .on-hover-text {
+      visibility: hidden;
+      position: absolute;
+      width: 100%;
+      top: 100px;
+      pointer-events: none;
+
+      &:hover {
+        visibility: visible;
+      }
+    }
+
   }
 
-}
-
-.home-page {
-  height: 100%;
 }
 
 .main-catch {
@@ -331,54 +370,15 @@ section {
 
 }
 
-.output-text-col {
-  width: 33%;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-
-  .output-text {
-
-    text-align: left;
-    border-top: 1px solid $theme-color;
-    border-bottom: 1px solid $theme-color;
-
-    h3 {
-      font-size: 17px;
-    }
-
-    h4 {
-      font-size: 12px;
-    }
-
-    h6 {
-      font-size: 15px;
-    }
-
-  }
-
-}
-
-.example-output {
-  width: 540px;
-  vertical-align: middle;
-}
-
-.quiz-page, .outcome-page, .explore-page, .about-page {
+.quiz-page {
   footer {
     position: fixed;
     z-index: 100;
   }
 }
 
-@mixin background-image($from, $to) {
-  background-image: -webkit-gradient(linear,left top,left bottom,from($from),to($to));
-  background-image: -webkit-linear-gradient(top,$from,$to);
-  background-image: -moz-linear-gradient(top,$from,$to);
-  background-image: -ms-linear-gradient(top,$from,$to);
-  background-image: -o-linear-gradient(top,$from,$to);
-  background-image: linear-gradient(top,$from,$to);
-}
+/* QUIZ STYLES
+============================================================================= */
 
 .quiz {
 
@@ -405,11 +405,6 @@ section {
 
       &.selected {
         @include background-image($gray-background 0%, $line-light-gray 100%);
-        // border: 1px solid $line-gray;
-
-        h3 {
-          // border-top: 1px solid $line-gray;
-        }
       }
 
       h3 {
@@ -425,6 +420,7 @@ section {
     .quiz-nav {
       position: relative;
       top: -130px;
+      pointer-events: none;
 
       .my-button {
         background-color: #CBCBCB;
@@ -443,10 +439,47 @@ section {
 
   }
 
+}
+
+/* OUTCOME TEXT STYLES
+============================================================================= */
+
+.output-text-col {
+  width: 33%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+
+  .output-text {
+
+    text-align: left;
+    border-top: 1px solid $theme-color;
+    border-bottom: 1px solid $theme-color;
+
+    h3 {
+      font-size: 17px;
+    }
+
+    h4 {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    h6 {
+      font-size: 15px;
+    }
+
+  }
 
 }
 
-/* GRAPH
+.example-output {
+  width: 540px;
+  vertical-align: middle;
+}
+
+
+/* GRAPH STYLES
 ============================================================================= */
 
 .graph-wrapper {
@@ -459,10 +492,8 @@ section {
 .graph-overlay {
   width: 100%;
   height: 100%;
-  // background-color: #ff0000;;
   background-color: transparent;
   opacity: 0;
-  // opacity: 1;
   position: relative;
   z-index: 20;
 }
@@ -470,15 +501,12 @@ section {
 .venn-circle {
   border-radius: 50%;
   background-color: $theme-color;
-  // background-color: #d0d0d0;
   opacity: 0.1;
-  // opacity: 1;
   position: absolute;
   z-index: 0;
 
   &.hover {
     opacity: 0.4;
-    // background-color: lighten($turqoise, 20%);
     background-color: $theme-color;
     z-index: 1;
   }
