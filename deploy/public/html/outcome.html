@@ -4,7 +4,7 @@
   <div class="contents center-text v-margin-x-large">
     <div class="box v-padding-medium">
       <h4>Your best fit is:</h4>
-      <h2>{{outcome.field}}</h2>
+      <h2>{{userBestFit.field}}</h2>
     </div>
 
   </div>
@@ -19,11 +19,11 @@
     <div class="output-text-col v-margin-medium">
 
       <div class="output-text v-padding-medium h-padding-small h-margin-large">
-        <h3 class="theme-color v-margin-medium">{{outcome.job}}</h3>
+        <h3 class="theme-color v-margin-medium">{{userBestFit.job}}</h3>
         <h4 class="gray-color">Your potential job title</h4>
-        <h6 class="theme-color v-margin-x-small">Field: {{outcome.field}}</h6>
-        <h4 class="theme-color v-margin-medium"><small><a ng-href="{{outcome.link}}" target="_blank" class="non-styling">[find available jobs on LinkedIn]</a></small></h4>
-        <h4>{{outcome.description}}</h4>
+        <h6 class="theme-color v-margin-x-small">Field: {{userBestFit.field}}</h6>
+        <h4 class="theme-color v-margin-medium"><small><a ng-href="{{userBestFit.link}}" target="_blank" class="non-styling">[find available jobs on LinkedIn]</a></small></h4>
+        <h4>{{userBestFit.description}}</h4>
         <h4 class="theme-color v-margin-medium"><a ng-href="/#/explore" class="non-styling">&gt; Explore More Careers</a></h4>
       </div>
     </div>

@@ -6,58 +6,72 @@ angular.module("designpathApp")
 
 }])
 
-.controller("QuizCtrl", [ "$scope", "$route", "$location", "QuizService", function ($scope, $route, $location, QuizService) {
+/**
+* Responsible for retrieving the question based on the current quiz index, then
+* allowing the user to select a choice for a question or navigate the quiz.
+*/
+.controller("QuizCtrl", [ "$scope", "$route", "$location", "QuizService", "DesignPathQuestions",
+  function ($scope, $route, $location, QuizService, DesignPathQuestions) {
 
   $scope.pageClass = 'quiz-page';
 
-  $scope.questionID = $route.current.params.id;
+  $scope.questionPk = parseInt($route.current.params.id, 10);
 
-  $scope.question = QuizService.getQuestion($scope.questionID);
+  if ($scope.questionPk > DesignPathQuestions.length) {
+    $location.path("/404");
+  }
 
-  $scope.submitQuestion = function() {
-    $location.path(QuizService.nextPath($scope.questionID));
+  $scope.question = DesignPathQuestions[$scope.questionPk - 1];
+
+  $scope.selectAnswer = function (index) {
+    QuizService.select($scope.questionPk, index);
+    $scope.nextQuestion();
   };
 
   $scope.prevQuestion = function () {
-    $location.path(QuizService.prevPath($scope.questionID));
+    if ($scope.questionPk === 1) {
+      return $location.path("/");
+    } else {
+      return $location.path("/quiz/" + ($scope.questionPk - 1).toString());
+    }
   };
 
   $scope.nextQuestion = function () {
-    $location.path(QuizService.nextPath($scope.questionID));
+    if ($scope.questionPk === DesignPathQuestions.length) {
+      return $location.path("/outcome");
+    } else {
+      return $location.path("/quiz/" + ($scope.questionPk + 1).toString());
+    }
   };
 
 }])
 
-.controller("OutcomeCtrl", [ "$scope", "QuizService", function ($scope, QuizService) {
+/**
+* Based on the user's response, it will evaluate the quiz and show the best
+* fit for the user.
+*/
+.controller("OutcomeCtrl", [ "$scope", "QuizService", "GraphCircles", "GraphDots", "DesignPathOutcomes",
+  function ($scope, QuizService, GraphCircles, GraphDots, DesignPathOutcomes) {
 
   $scope.pageClass = 'outcome-page';
 
-  $scope.outcome = QuizService.getOutcome();
+  $scope.circles = GraphCircles;
+  $scope.dots = GraphDots;
 
-  $scope.circles = [
-    { key: 'research', keyPlace: 'NW', diameter: 380, top: 100, left: 0 },
-    { key: 'macro', keyPlace: 'NW', diameter: 290, top: 103, left: 150 },
-    { key: 'micro', keyPlace: 'NE', diameter: 290, top: 103, left: 190 },
-    { key: 'visual', keyPlace: 'NE', diameter: 290, top: 0, left: 270 },
-    { key: 'implementation', keyPlace: 'SE', diameter: 300, top: 200, left: 265 },
-    { key: 'business', keyPlace: 'SW', diameter: 370, top: 150, left: 180 }
-  ];
+  var userBestFitStack = QuizService.evaluate();
 
-  $scope.dots = [
-    { x: 210, y: 220, title:'abstract'},
-    { x: 210, y: 275, title:'people'},
-    { x: 285, y: 140, title:'diagnostic'},
-    { x: 285, y: 360, title:'analytical'},
-    { x: 305, y: 80, title:'design'},
-    { x: 305, y: 420, title:'number'},
-    { x: 325, y: 140, title:'intuition'},
-    { x: 325, y: 360, title:'sensing'},
-    { x: 410, y: 220, title:'concrete'},
-    { x: 410, y: 275, title:'information'}
-  ];
+  var getOutcomeByPk = function (pk) {
+    for (var i = 0; i < DesignPathOutcomes.length; i++) {
+      if (DesignPathOutcomes[i].pk === pk) {
+        return DesignPathOutcomes[i];
+      }
+    }
+  };
+
+  $scope.userBestFit = getOutcomeByPk(userBestFitStack[0].key);
 
   for (var i = 0; i < $scope.circles.length; i++) {
-    if ($scope.circles[i].key === $scope.outcome.pk) {
+    if ($scope.circles[i].key === $scope.userBestFit.pk) {
       $scope.circles[i].alwaysHover = true;
     }
   }
@@ -71,26 +85,26 @@ angular.module("designpathApp")
 
 }])
 
-.controller("ExploreCtrl", [ "$scope", "QuizService", function ($scope, QuizService) {
+/**
+* Allows the users to explore each of the outcome categories.
+*/
+.controller("ExploreCtrl", [ "$scope", "GraphCircles", "GraphDots", "DesignPathOutcomes",
+  function ($scope, GraphCircles, GraphDots, DesignPathOutcomes) {
 
-  $scope.circles = [
-    { key: 'UX Macro', keyPlace: 'NW', diameter: 290, top: 103, left: 150 },
-    { key: 'UX Micro', keyPlace: 'NE', diameter: 290, top: 103, left: 190 },
-    { key: 'Research', keyPlace: 'NW', diameter: 380, top: 100, left: 0 },
-    { key: 'Business', keyPlace: 'SW', diameter: 370, top: 150, left: 180 },
-    { key: 'Visual', keyPlace: 'NE', diameter: 290, top: 0, left: 270 },
-    { key: 'Implementation', keyPlace: 'SE', diameter: 300, top: 200, left: 265 }
-  ];
+  $scope.pageClass = 'explore-page';
 
-  $scope.outcomes = QuizService.outcomes;
+  $scope.circles = GraphCircles;
+  $scope.dots = GraphDots;
 
-  $scope.curCategory = $scope.outcomes[0];
+  $scope.outcomes = DesignPathOutcomes;
+
+  $scope.curCategory = DesignPathOutcomes[0];
 
   $scope.$watch(function () {
     return $scope.circles[0].hover;
   }, function  (newValue, oldValue) {
     if (newValue) {
-      $scope.curCategory = $scope.outcomes[0];
+      $scope.curCategory = DesignPathOutcomes[0];
     }
   });
 
@@ -98,7 +112,7 @@ angular.module("designpathApp")
     return $scope.circles[1].hover;
   }, function  (newValue, oldValue) {
     if (newValue) {
-      $scope.curCategory = $scope.outcomes[1];
+      $scope.curCategory = DesignPathOutcomes[1];
     }
   });
 
@@ -106,7 +120,7 @@ angular.module("designpathApp")
     return $scope.circles[2].hover;
   }, function  (newValue, oldValue) {
     if (newValue) {
-      $scope.curCategory = $scope.outcomes[2];
+      $scope.curCategory = DesignPathOutcomes[2];
     }
   });
 
@@ -114,7 +128,7 @@ angular.module("designpathApp")
     return $scope.circles[3].hover;
   }, function  (newValue, oldValue) {
     if (newValue) {
-      $scope.curCategory = $scope.outcomes[3];
+      $scope.curCategory = DesignPathOutcomes[3];
     }
   });
 
@@ -122,7 +136,7 @@ angular.module("designpathApp")
     return $scope.circles[4].hover;
   }, function  (newValue, oldValue) {
     if (newValue) {
-      $scope.curCategory = $scope.outcomes[4];
+      $scope.curCategory = DesignPathOutcomes[4];
     }
   });
 
@@ -130,24 +144,8 @@ angular.module("designpathApp")
     return $scope.circles[5].hover;
   }, function  (newValue, oldValue) {
     if (newValue) {
-      $scope.curCategory = $scope.outcomes[5];
+      $scope.curCategory = DesignPathOutcomes[5];
     }
   });
-
-
-  $scope.dots = [
-    { x: 210, y: 220, title:'abstract'},
-    { x: 210, y: 275, title:'people'},
-    { x: 285, y: 140, title:'diagnostic'},
-    { x: 285, y: 360, title:'analytical'},
-    { x: 305, y: 80, title:'design'},
-    { x: 305, y: 420, title:'number'},
-    { x: 325, y: 140, title:'intuition'},
-    { x: 325, y: 360, title:'sensing'},
-    { x: 410, y: 220, title:'concrete'},
-    { x: 410, y: 275, title:'information'}
-  ];
-
-  $scope.pageClass = 'explore-page';
 
 }]);

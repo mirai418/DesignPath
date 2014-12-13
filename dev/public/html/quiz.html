@@ -8,8 +8,8 @@
 
     <div class="choices-wrapper clearfix">
 
-      <div class="choice buttonize" ng-class="{'selected': question.selected[$index]}" ng-repeat="choice in question.choices" ng-click="question.selector($index); question.evaluator(); submitQuestion();">
-        <img ng-src="{{choice.image}}" alt="{{choice.image}}" ng-click="question.selector($index); question.evaluator(); submitQuestion();">
+      <div class="choice buttonize" ng-class="{'selected': question.selected[$index]}" ng-repeat="choice in question.choices" ng-click="selectAnswer($index)">
+        <img ng-src="{{choice.image}}" alt="{{choice.image}}">
         <h3 class="v-margin-small v-padding-large">{{choice.text}}</h3>
       </div>
 
