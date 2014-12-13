@@ -319,11 +319,11 @@ angular.module('designpathApp')
       prompt: 'Which game do you prefer playing?',
       choices: [
         {
-          text: '',
+          text: 'Monopoly',
           image: '/images/quiz/monop.jpg'
         },
         {
-          text: '',
+          text: 'Pictionary',
           image: '/images/quiz/pictionary.jpg'
         }
       ],
@@ -358,11 +358,11 @@ angular.module('designpathApp')
       prompt: 'Which website do you like to spend more time on?',
       choices: [
         {
-          text: '',
+          text: 'Wikipedia',
           image: '/images/quiz/wiki.png'
         },
         {
-          text: '',
+          text: 'Pinterest',
           image: '/images/quiz/pinterest.png'
         }
       ],

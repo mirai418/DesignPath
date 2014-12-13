@@ -364,7 +364,7 @@ header {
       height: $mobile-logo-height;
     }
 
-    &:active {
+    &.clicked {
       @include animation(rotate 0.4s ease-in-out);
     }
 
@@ -373,7 +373,6 @@ header {
   nav {
     float: right;
 
-    // TODO
     @media screen and (max-width: $desktop-content-width) {
       float: none;
       background-color: rgba(255, 255, 255, 0.9);
@@ -384,8 +383,6 @@ header {
       left: 10px;
 
       @include transition((height 0.2s ease-in-out, left 0.2s ease-in-out));
-      // @include transition(left 0.1s ease-in-out);
-
 
       &.clicked {
         border-bottom: 1px solid $line-light-gray;
@@ -393,10 +390,6 @@ header {
         height: $mobile-header-height;
       }
 
-      // &:active {
-      //   height: 0px;
-      //   left: 20px;
-      // }
     }
 
     ul {
@@ -609,7 +602,6 @@ section {
 
       @include background-image($white 0%, $gray-background 100%);
 
-
       &.selected {
         @include background-image($gray-background 0%, $line-light-gray 100%);
       }
@@ -619,7 +611,8 @@ section {
       }
 
       img {
-        height: 80px;
+        // max-height: 80px;
+        max-width: 100%;
       }
 
     }
@@ -629,7 +622,10 @@ section {
     .quiz-nav {
       position: relative;
       top: -130px;
-      pointer-events: none;
+
+      @media screen and (min-width: $desktop-content-width + 1) {
+        pointer-events: none;
+      }
 
       @media screen and (max-width: $desktop-content-width) {
         top: 0px;
@@ -641,6 +637,7 @@ section {
         width: $quiz-nav-button-width;
         line-height: $quiz-nav-button-width;
         padding: 0;
+        pointer-events: auto;
 
         @media screen and (max-width: $desktop-content-width) {
           margin: 20px 2.5%;
@@ -731,6 +728,11 @@ section {
 ============================================================================= */
 
 .graph-wrapper {
+
+  @media screen and (max-width: $desktop-content-width) {
+    display: none;
+  }
+
   width: 600px;
   height: 540px;
   display: inline-block;

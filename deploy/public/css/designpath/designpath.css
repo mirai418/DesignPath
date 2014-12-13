@@ -224,7 +224,7 @@ header {
         display: none; } }
     header a.logo-mobile img {
       height: 32px; }
-    header a.logo-mobile:active {
+    header a.logo-mobile.clicked {
       -webkit-animation: rotate 0.4s ease-in-out;
       -moz-animation: rotate 0.4s ease-in-out;
       animation: rotate 0.4s ease-in-out; }
@@ -395,11 +395,13 @@ section {
     .quiz .choices-wrapper .choice h3 {
       border-top: 1px solid #e0e0e0; }
     .quiz .choices-wrapper .choice img {
-      height: 80px; }
+      max-width: 100%; }
   .quiz .choices-wrapper .quiz-nav {
     position: relative;
-    top: -130px;
-    pointer-events: none; }
+    top: -130px; }
+    @media screen and (min-width: 961px) {
+      .quiz .choices-wrapper .quiz-nav {
+        pointer-events: none; } }
     @media screen and (max-width: 960px) {
       .quiz .choices-wrapper .quiz-nav {
         top: 0px; } }
@@ -408,7 +410,8 @@ section {
       height: 38px;
       width: 38px;
       line-height: 38px;
-      padding: 0; }
+      padding: 0;
+      pointer-events: auto; }
       @media screen and (max-width: 960px) {
         .quiz .choices-wrapper .quiz-nav .my-button {
           margin: 20px 2.5%;
@@ -465,6 +468,9 @@ section {
   height: 540px;
   display: inline-block;
   vertical-align: middle; }
+  @media screen and (max-width: 960px) {
+    .graph-wrapper {
+      display: none; } }
 
 .graph-overlay {
   width: 100%;
