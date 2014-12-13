@@ -33,12 +33,15 @@
 
     <header>
       <div class="contents">
-        <a class="non-styling" href="/#/" title="Home">
-          <img src="/images/logo.png" alt="Design Path" class="logo">
+        <a class="non-styling logo-full" href="/#/" title="Home" class="logo-full">
+          <img src="/images/logo-full.png" alt="Design Path">
         </a>
-        <nav>
+        <a class="non-styling logo-mobile" title="Home" class="logo-mobile" ng-click="navOn = !navOn">
+          <img src="/images/logo-mobile.png" alt="Design Path">
+        </a>
+        <nav ng-class="{ 'clicked': navOn }">
           <ul>
-              <!-- <li class="h-margin-medium"><a href="/#/home">home</a></li> -->
+              <li class="h-margin-medium"><a href="/#/home">home</a></li>
               <li class="h-margin-medium"><a href="/#/quiz">take quiz</a></li>
               <li class="h-margin-medium"><a href="/#/explore">explore careers</a></li>
               <li class="h-margin-medium"><a href="/#/about">about</a></li>
@@ -47,7 +50,7 @@
       </div>
     </header>
 
-    <article ng-view></article>
+    <article ng-view autoscroll=""></article>
 
     <footer>
       <div class="contents">

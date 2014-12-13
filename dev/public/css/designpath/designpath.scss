@@ -11,10 +11,22 @@ $gray-background: #f7f7f7;
 $white: #ffffff;
 $black: #000000;
 
+$desktop-content-width: 960px;
+$desktop-medium-width: 600px;
+$desktop-narrow-width: 400px;
+
+$mobile-content-width: 96%;
+$mobile-medium-width: 96%;
+$mobile-narrow-width: 96%;
+
 $header-height: 60px;
 $footer-height: 30px;
-$logo-height: 40px;
+$logo-height: 34px;
 $circle-image-diameter: 250px;
+
+$mobile-header-height: 48px;
+$mobile-footer-height: 24px;
+$mobile-logo-height: 32px;
 
 @mixin background-image($from, $to) {
   background-image: -webkit-gradient(linear,left top,left bottom,from($from),to($to));
@@ -25,14 +37,50 @@ $circle-image-diameter: 250px;
   background-image: linear-gradient(top,$from,$to);
 }
 
+@mixin transition($args) {
+  -webkit-transition: $args;
+     -moz-transition: $args;
+       -o-transition: $args;
+          transition: $args;
+}
+
+@mixin transform($args) {
+  -webkit-transform: $args;
+     -moz-transform: $args;
+          transform: $args;
+}
+
+@mixin keyframe ($animation_name) {
+    @-webkit-keyframes $animation_name {
+        @content;
+    }
+
+    @-moz-keyframes $animation_name {
+        @content;
+    }
+
+    @-o-keyframes $animation_name {
+        @content;
+    }
+
+    @keyframes $animation_name {
+        @content;
+    }
+}
+
+@mixin animation ($args) {
+  -webkit-animation: $args;
+     -moz-animation: $args;
+          animation: $args;
+}
 
 /* UTILITY STYLES
 ============================================================================= */
 
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    display: table;
 }
 
 .clearfix:after {
@@ -95,31 +143,63 @@ html, body {
   width: 100%;
   min-height: 100%;
   line-height: 1.4;
+
+  @media screen and (max-width: $desktop-content-width) {
+    font-size: 1.32;
+  }
+
 }
 
-h2, h3, h4, h6 {
+h1, h2, h3, h4, h6 {
   font-family: 'Merriweather', serif;
   font-weight: 300;
 }
 
-h2 {
-  color: $theme-color;
+h1 {
+  font-size: 40px;
+  line-height: 1.2;
+
+  @media screen and (max-width: $desktop-content-width) {
+    font-size: 28px;
+  }
+
 }
 
 h2 {
   font-size: 34px;
+  color: $theme-color;
+
+  @media screen and (max-width: $desktop-content-width) {
+    font-size: 26px;
+  }
+
 }
 
 h3 {
   font-size: 16px;
+
+  @media screen and (max-width: $desktop-content-width) {
+    font-size: 13px;
+  }
+
 }
 
 h4 {
   font-size: 26px;
+
+  @media screen and (max-width: $desktop-content-width) {
+    font-size: 20px;
+  }
+
 }
 
 h5 {
   font-size: 18px;
+
+  @media screen and (max-width: $desktop-content-width) {
+    font-size: 14px;
+  }
+
 }
 
 small {
@@ -215,12 +295,23 @@ header, article, footer {
 
 .header-padding {
   padding-top: $header-height;
+
 }
 
 .contents {
-  width: 960px;
+  width: $desktop-content-width;
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (max-width: $desktop-content-width) {
+    width: $mobile-content-width;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}
+
+@include keyframe(rotate) {
+  100% { @include transform(rotate(360deg)) }
 }
 
 header {
@@ -233,10 +324,24 @@ header {
   right: 0;
   background-color: rgba(255, 255, 255, 0.9);
 
-  img.logo {
+  @media screen and (max-width: $desktop-content-width) {
+    height: $mobile-header-height;
+    text-align: center;
+  }
+
+  a.logo-full {
     margin-top: ($header-height - $logo-height) / 2;
     height: $logo-height;
     float: left;
+    display: inline-block;
+
+    @media screen and (max-width: $desktop-content-width) {
+      display: none;
+    }
+
+    img {
+      height: $logo-height;
+    }
 
     &:hover {
       opacity: 0.6;
@@ -244,16 +349,86 @@ header {
 
   }
 
-  nav {
-    float: right;
+  a.logo-mobile {
+    margin-top: ($mobile-header-height - $mobile-logo-height) / 2;
+    margin-bottom: ($mobile-header-height - $mobile-logo-height) / 2 + 2;
+
+    height: $mobile-logo-height;
+    display: inline-block;
+
+    @media screen and (min-width: $desktop-content-width + 1) {
+      display: none;
+    }
+
+    img {
+      height: $mobile-logo-height;
+    }
+
+    &:active {
+      @include animation(rotate 0.4s ease-in-out);
+    }
+
   }
 
-  nav ul li {
-    text-transform: uppercase;
-    display: inline-block;
-    font-size: 1.1em;
-    line-height: $header-height;
-    letter-spacing: 1px;
+  nav {
+    float: right;
+
+    // TODO
+    @media screen and (max-width: $desktop-content-width) {
+      float: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      height: 0px;
+      overflow: scroll;
+      width: 100%;
+      position: absolute;
+      left: 10px;
+
+      @include transition((height 0.2s ease-in-out, left 0.2s ease-in-out));
+      // @include transition(left 0.1s ease-in-out);
+
+
+      &.clicked {
+        border-bottom: 1px solid $line-light-gray;
+        left: 0;
+        height: $mobile-header-height;
+      }
+
+      // &:active {
+      //   height: 0px;
+      //   left: 20px;
+      // }
+    }
+
+    ul {
+      white-space: nowrap;
+
+      @media screen and (max-width: $desktop-content-width) {
+        margin: 0px 20px;
+      }
+
+      li {
+        text-transform: uppercase;
+        display: inline-block;
+        font-size: 1.1em;
+        line-height: $header-height;
+        letter-spacing: 1px;
+
+        @media screen and (max-width: $desktop-content-width) {
+          font-size: 1em;
+          line-height: $mobile-header-height;
+          letter-spacing: 1px;
+        }
+
+        @media screen and (min-width: $desktop-content-width + 1) {
+          &:first-child {
+            display: none;
+          }
+        }
+
+      }
+
+    }
+
   }
 
 }
@@ -264,10 +439,19 @@ footer {
   border-top: 1px solid $line-light-gray;
   background-color: rgba(255, 255, 255, 0.9);
 
+  @media screen and (max-width: $desktop-content-width) {
+    height: $mobile-footer-height;
+  }
+
   p {
     line-height: $footer-height;
     letter-spacing: 1px;
     font-size: 13px;
+
+    @media screen and (max-width: $desktop-content-width) {
+      line-height: $mobile-footer-height;
+    }
+
   }
 
 }
@@ -287,6 +471,11 @@ section {
     background-repeat:no-repeat;
     background-size:cover;
     height: 420px;
+
+    @media screen and (max-width: $desktop-content-width) {
+      height: 320px;
+    }
+
   }
 
   &.about-banner {
@@ -298,11 +487,20 @@ section {
   }
 
   .medium-width {
-    width: 600px;
+    width: $desktop-medium-width;
+
+    @media screen and (max-width: $desktop-content-width) {
+      width: $mobile-medium-width;
+    }
+
   }
 
   .narrow-width {
-    width: 400px;
+    width: $desktop-narrow-width;
+
+    @media screen and (max-width: $desktop-content-width) {
+      width: $mobile-narrow-width;
+    }
   }
 
   .box {
@@ -315,6 +513,13 @@ section {
     display: inline-block;
     text-align: center;
     vertical-align: top;
+
+    @media screen and (max-width: $desktop-content-width) {
+      width: 100%;
+      display: block;
+      text-align: center;
+      vertical-align: auto;
+    }
 
     .circle-image {
       width: $circle-image-diameter;
@@ -334,7 +539,10 @@ section {
       position: absolute;
       width: 100%;
       top: 100px;
-      pointer-events: none;
+
+      @media screen and (min-width: $desktop-content-width + 1) {
+        pointer-events: none;
+      }
 
       &:hover {
         visibility: visible;
@@ -343,32 +551,20 @@ section {
 
   }
 
-}
-
-.main-catch {
-  color: $white;
-
   .main-catch-text {
     padding-top: 110px;
     padding-bottom: 70px;
-  }
 
-  h2 {
-    font-size: 40px;
-    line-height: 1.2;
-    color: $white;
-  }
-
-  h3 {
-    font-size: 26px;
-
-    span {
-      border-top: 1px solid $line-gray;
-      border-bottom: 1px solid $line-gray;
+    @media screen and (max-width: $desktop-content-width) {
+      padding-top: $mobile-header-height + $mobile-header-height / 6;
+      padding-bottom: 0px;
     }
   }
 
 }
+
+/* QUIZ STYLES
+============================================================================= */
 
 .quiz-page {
   footer {
@@ -377,13 +573,15 @@ section {
   }
 }
 
-/* QUIZ STYLES
-============================================================================= */
-
 .quiz {
 
   .prompt {
     margin: 80px;
+
+    @media screen and (max-width: $desktop-content-width) {
+      margin: 20px 0px;
+    }
+
   }
 
   .choices-wrapper {
@@ -399,6 +597,15 @@ section {
       padding: 20px;
       vertical-align: middle;
       height: 100%;
+
+      @media screen and (max-width: $desktop-content-width) {
+        position: relative;
+        margin: 2%;
+        width: 41%;
+        padding: 2%;
+        vertical-align: middle;
+        height: 100%;
+      }
 
       @include background-image($white 0%, $gray-background 100%);
 
@@ -417,17 +624,28 @@ section {
 
     }
 
+    $quiz-nav-button-width: 38px;
+
     .quiz-nav {
       position: relative;
       top: -130px;
       pointer-events: none;
 
+      @media screen and (max-width: $desktop-content-width) {
+        top: 0px;
+      }
+
       .my-button {
         background-color: #CBCBCB;
-        height: 38px;
-        width: 38px;
-        line-height: 38px;
+        height: $quiz-nav-button-width;
+        width: $quiz-nav-button-width;
+        line-height: $quiz-nav-button-width;
         padding: 0;
+
+        @media screen and (max-width: $desktop-content-width) {
+          margin: 20px 2.5%;
+          width: $quiz-nav-button-width * 2;
+        }
 
         &:hover {
           background-color: #E0E0E0;
@@ -450,6 +668,11 @@ section {
   text-align: center;
   vertical-align: middle;
 
+  @media screen and (max-width: $desktop-content-width) {
+    width: $mobile-content-width;
+    margin: 1%;
+  }
+
   .output-text {
 
     text-align: left;
@@ -469,6 +692,25 @@ section {
       font-size: 15px;
     }
 
+    // todo
+    @media screen and (max-width: $desktop-content-width) {
+      border-top: 1px solid $theme-color;
+      border-bottom: 1px solid $theme-color;
+
+      h3 {
+        font-size: 15px;
+      }
+
+      h4 {
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      h6 {
+        font-size: 13px;
+      }
+    }
+
   }
 
 }
@@ -476,6 +718,12 @@ section {
 .example-output {
   width: 540px;
   vertical-align: middle;
+
+  @media screen and (max-width: $desktop-content-width) {
+    width: $mobile-content-width;
+    margin: 1%;
+  }
+
 }
 
 
@@ -552,18 +800,15 @@ section {
 }
 
 .page.ng-leave {
+  @include animation(slideOutLeft 0.5s both ease-in);
+
   /*-webkit-transform-origin: 0% 0%;*/
-  /*-webkit-animation: slideOutLeft 0.5s both ease-in;*/
-  /*-moz-transform-origin: 0% 0%;*/
   /*-moz-animation: slideOutLeft 0.5s both ease-in;*/
-  /*transform-origin: 0% 0%;*/
   /*animation: slideOutLeft 0.5s both ease-in;*/
 }
 
 .page.ng-enter {
-  /*-webkit-animation:slideInRight 0.5s both ease-in;*/
-  /*-moz-animation:slideInRight 0.5s both ease-in;*/
-  /*animation:slideInRight 0.5s both ease-in;*/
+  @include animation(slideInRight 0.5s both ease-in);
 }
 
 /* rotate and fall */
@@ -629,14 +874,8 @@ section {
 }
 
 /* slide in from the bottom */
-@keyframes slideOutLeft {
+@include keyframe(slideOutLeft) {
   to { transform: translateX(-100%); }
-}
-@-moz-keyframes slideOutLeft {
-  to { -moz-transform: translateX(-100%); }
-}
-@-webkit-keyframes slideOutLeft {
-  to { -webkit-transform: translateX(-100%); }
 }
 
 /* rotate out newspaper */

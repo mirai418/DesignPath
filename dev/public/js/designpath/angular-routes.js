@@ -61,9 +61,16 @@ angular.module('designpathApp')
 
   angular.element($window).bind("resize", function (event) {
     $rootScope.$apply();
+  }).bind("scroll", function (event) {
+    if ($rootScope.navOn) {
+      $rootScope.navOn = false;
+      $rootScope.$apply();
+    }
+
   });
 
   $rootScope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+    $rootScope.navOn = false;
     if (angular.isDefined(current.$$route)) {
       $rootScope.title = current.$$route.title;
       $rootScope.class = current.$$route.class;
