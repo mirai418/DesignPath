@@ -9,6 +9,7 @@ angular.module("designpathApp")
     scope: {
       circles: '=',
       dots: '=',
+      lines: '='
     },
 
     link: function(scope, iElm, iAttrs, controller) {
@@ -86,7 +87,7 @@ angular.module("designpathApp")
   };
 }])
 
-.directive('graphDots', [ function () {
+.directive('graphDot', [ function () {
 
   return {
     restrict: 'E',
@@ -118,6 +119,55 @@ angular.module("designpathApp")
                  };
         }
 
+      };
+
+    }
+  };
+}])
+
+.directive('graphLine', [ function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: '/html/graph-line.html',
+
+    scope: {
+      line: '='
+    },
+
+    link: function(scope, iElm, iAttrs, controller) {
+
+      var dx = scope.line.x2 - scope.line.x1;
+      var dy = scope.line.y2 - scope.line.y1;
+
+      var getWidth = function () {
+        return Math.sqrt(dx * dx + dy * dy);
+      };
+
+      var getTheta = function () {
+        var radians = Math.atan(dy/dx);
+        return radians * (180/Math.PI);
+      };
+
+      var getLeft = function (width) {
+        return scope.line.x1 + dx / 2 - width / 2;
+      };
+
+      var getTop = function () {
+        return scope.line.y1 + dy / 2;
+      };
+
+      scope.getStyle = function () {
+        var width = getWidth();
+        var theta = getTheta();
+        var top = getTop();
+        var left = getLeft(width);
+        return {               'top': top + 'px',
+                              'left': left - 1 + 'px',
+                             'width': width + 'px',
+                 '-webkit-transform': 'rotate(' + theta + 'deg)',
+                    '-moz-transform': 'rotate(' + theta + 'deg)',
+                         'transform': 'rotate(' + theta + 'deg)' };
       };
 
     }

@@ -50,13 +50,14 @@ angular.module("designpathApp")
 * Based on the user's response, it will evaluate the quiz and show the best
 * fit for the user.
 */
-.controller("OutcomeCtrl", [ "$scope", "QuizService", "GraphCircles", "GraphDots", "DesignPathOutcomes",
-  function ($scope, QuizService, GraphCircles, GraphDots, DesignPathOutcomes) {
+.controller("OutcomeCtrl", [ "$scope", "QuizService", "GraphCircles", "GraphDots", "GraphLines", "DesignPathOutcomes",
+  function ($scope, QuizService, GraphCircles, GraphDots, GraphLines, DesignPathOutcomes) {
 
   $scope.pageClass = 'outcome-page';
 
   $scope.circles = GraphCircles;
   $scope.dots = GraphDots;
+  $scope.lines = GraphLines;
 
   var userBestFitStack = QuizService.evaluate();
 
@@ -69,13 +70,23 @@ angular.module("designpathApp")
   };
 
   $scope.userBestFit = getOutcomeByPk(userBestFitStack[0].key);
+  var index = DesignPathOutcomes.indexOf($scope.userBestFit);
 
-  for (var i = 0; i < $scope.circles.length; i++) {
-    if ($scope.circles[i].key === $scope.userBestFit.pk) {
-      $scope.circles[i].alwaysHover = true;
-    }
+  // for (var i = 0; i < $scope.circles.length; i++) {
+  //   if ($scope.circles[i].key === $scope.userBestFit.pk) {
+  //     $scope.circles[i].alwaysHover = true;
+  //   }
+  // }
+
+  $scope.circles[index].alwaysHover = true;
+  var j;
+  for (j = 0; j < $scope.userBestFit.relevantDots.length; j++) {
+    $scope.dots[$scope.userBestFit.relevantDots[j]].alwaysHover = true;
   }
-
+  for (j = 0; j < $scope.userBestFit.relevantLines.length; j++) {
+    $scope.lines[$scope.userBestFit.relevantLines[j]].show = true;
+  }
+  // $scope.curIndex = index;
 
 }])
 
@@ -151,13 +162,14 @@ angular.module("designpathApp")
 }])
 
 
-.controller("Explore2Ctrl", [ "$scope", "GraphCircles", "GraphDots", "DesignPathOutcomes",
-  function ($scope, GraphCircles, GraphDots, DesignPathOutcomes) {
+.controller("Explore2Ctrl", [ "$scope", "GraphCircles", "GraphDots", "GraphLines", "DesignPathOutcomes",
+  function ($scope, GraphCircles, GraphDots, GraphLines, DesignPathOutcomes) {
 
   $scope.pageClass = 'explore-page';
 
   $scope.circles = GraphCircles;
   $scope.dots = GraphDots;
+  $scope.lines = GraphLines;
 
   $scope.DesignPathOutcomes = DesignPathOutcomes;
 
@@ -169,13 +181,21 @@ angular.module("designpathApp")
     var index = DesignPathOutcomes.indexOf(newValue);
     if (angular.isDefined($scope.curIndex)) {
       $scope.circles[$scope.curIndex].alwaysHover = false;
-      for (var i = 0; i < DesignPathOutcomes[$scope.curIndex].relevantDots.length; i++) {
+      var i;
+      for (i = 0; i < DesignPathOutcomes[$scope.curIndex].relevantDots.length; i++) {
         $scope.dots[DesignPathOutcomes[$scope.curIndex].relevantDots[i]].alwaysHover = false;
+      }
+      for (i = 0; i < DesignPathOutcomes[$scope.curIndex].relevantLines.length; i++) {
+        $scope.lines[DesignPathOutcomes[$scope.curIndex].relevantLines[i]].show = false;
       }
     }
     $scope.circles[index].alwaysHover = true;
-    for (var j = 0; j < newValue.relevantDots.length; j++) {
+    var j;
+    for (j = 0; j < newValue.relevantDots.length; j++) {
       $scope.dots[newValue.relevantDots[j]].alwaysHover = true;
+    }
+    for (j = 0; j < newValue.relevantLines.length; j++) {
+      $scope.lines[newValue.relevantLines[j]].show = true;
     }
     $scope.curIndex = index;
 

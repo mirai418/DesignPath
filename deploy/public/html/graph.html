@@ -2,7 +2,9 @@
 
   <venn-circle ng-repeat="circle in circles" circle="circle"></venn-circle>
 
-  <graph-dots ng-repeat="dot in dots" dot="dot"></graph-dots>
+  <graph-dot ng-repeat="dot in dots" dot="dot"></graph-dot>
+
+  <graph-line ng-repeat="line in lines" line="line"></graph-line>
 
   <div class="graph-overlay" ng-mousemove="mouseMove($event)"></div>
 

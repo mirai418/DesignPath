@@ -74,58 +74,6 @@ $mobile-logo-height: 32px;
           animation: $args;
 }
 
-hr.zero {
-  margin: 0;
-  border: 1px solid red;
-  @include transform(rotate(0deg));
-  width: 200px;
-  position: absolute;
-  top: 300px;
-  left: 300px;
-
-}
-
-hr.one {
-  margin: 0;
-  border: 1px solid blue;
-  @include transform(rotate(45deg));
-  width: 200px;
-  position: absolute;
-  top: 000px;
-  left: 000px;
-}
-
-hr.two {
-  margin: 0;
-  border: 1px solid green;
-  @include transform(rotate(135deg));
-  width: 200px;
-  position: absolute;
-  top: 300px;
-  left: 300px;
-}
-
-hr.three {
-  margin: 0;
-  border: 1px solid orange;
-  @include transform(rotate(225deg));
-  width: 200px;
-  position: absolute;
-  top: 300px;
-  left: 300px;
-}
-
-hr.four {
-  margin: 0;
-  border: 1px solid purple;
-  @include transform(rotate(315deg));
-  width: 200px;
-  position: absolute;
-  top: 300px;
-  left: 300px;
-}
-
-
 /* UTILITY STYLES
 ============================================================================= */
 
@@ -158,6 +106,14 @@ hr.four {
 .margin-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
 }
 
 .sandwich-lines-white {
@@ -828,7 +784,7 @@ section {
 }
 
 .graph-dot {
-  z-index: 2;
+  z-index: 3;
   border-radius: 50%;
   position: absolute;
   width: 10px;
@@ -851,11 +807,17 @@ section {
 
   &.hover {
     visibility: visible;
-    // color: #666;
-    z-index: 2;
+    z-index: 3;
   }
 }
 
+hr.graph-line {
+  margin: 0;
+  border: 1px solid white;
+  // @include transform(rotate(0deg));
+  position: absolute;
+  z-index: 4;
+}
 
 /* ANIMATIONS
 ============================================================================= */
