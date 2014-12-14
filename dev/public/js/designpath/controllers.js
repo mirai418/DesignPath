@@ -28,6 +28,10 @@ angular.module("designpathApp")
     $scope.nextQuestion();
   };
 
+  $scope.isSelected = function (index) {
+    return index == QuizService.getSelected($scope.questionPk);
+  };
+
   $scope.prevQuestion = function () {
     if ($scope.questionPk === 1) {
       return $location.path("/");
@@ -59,6 +63,7 @@ angular.module("designpathApp")
   $scope.dots = GraphDots;
   $scope.lines = GraphLines;
 
+  // get the results of the quiz.
   var userBestFitStack = QuizService.evaluate();
 
   var getOutcomeByPk = function (pk) {
@@ -69,11 +74,25 @@ angular.module("designpathApp")
     }
   };
 
-  $scope.userBestFit = getOutcomeByPk(userBestFitStack[0].key);
-  var index = DesignPathOutcomes.indexOf($scope.userBestFit);
-
-  $scope.circles[index].alwaysHover = true;
+  // reset the graph to its original state.
+  // this should be extracted out to the the factories in the future.
   var j;
+  for (j = 0; j < $scope.circles.length; j++) {
+    $scope.circles[j].alwaysHover = false;
+  }
+  for (j = 0; j < $scope.dots.length; j++) {
+    $scope.dots[j].alwaysHover = false;
+  }
+  for (j = 0; j < $scope.lines.length; j++) {
+    $scope.lines[j].show = false;
+  }
+
+  // find the outcome information based on the evaluation
+  $scope.userBestFit = getOutcomeByPk(userBestFitStack[0].key);
+  $scope.index = DesignPathOutcomes.indexOf($scope.userBestFit);
+
+  // want to highlight the relevant circles, dots and lines.
+  $scope.circles[$scope.index].alwaysHover = true;
   for (j = 0; j < $scope.userBestFit.relevantDots.length; j++) {
     $scope.dots[$scope.userBestFit.relevantDots[j]].alwaysHover = true;
   }

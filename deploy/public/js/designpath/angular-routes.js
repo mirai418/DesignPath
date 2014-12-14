@@ -42,13 +42,13 @@ angular.module('designpathApp')
     controller: "AboutCtrl"
   })
 
-  .when("/explore", {
+  .when("/explore-2", {
     title: "Explore",
     class: "explore-page",
     templateUrl: "html/explore.html",
     controller: "ExploreCtrl"
   })
-  .when("/explore-2", {
+  .when("/explore", {
     title: "Explore",
     class: "explore-page",
     templateUrl: "html/explore-2.html",

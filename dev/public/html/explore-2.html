@@ -14,11 +14,14 @@
 <section class="white-background v-padding-x-large">
   <div class="contents center-text">
 
-   <select ng-model="curCategory" ng-options="outcome.field for outcome in DesignPathOutcomes"></select><br>
 
     <graph class="h-margin-large" circles="circles" dots="dots" lines="lines"></graph>
 
     <div class="output-text-col v-margin-medium">
+
+      <div class="v-margin-medium">
+      <select ng-model="curCategory" ng-options="outcome.field for outcome in DesignPathOutcomes"></select>
+      </div>
 
       <div class="output-text v-padding-medium h-padding-small h-margin-large">
         <h3 class="theme-color v-margin-medium">{{curCategory.job}}</h3>
@@ -29,8 +32,10 @@
       </div>
 
     </div>
+    <h3 class="show-mobile v-padding-large h-padding-x-large"><small>To get the full interactive discovery experience, visit us from your desktop!</small></h3>
 
   </div>
+
 
 </section>
 

@@ -142,6 +142,15 @@ $mobile-logo-height: 32px;
   color: $theme-color;
 }
 
+.show-mobile {
+  display: none;
+
+  @media screen and (max-width: $desktop-content-width) {
+    display: block;
+  }
+
+}
+
 /* BASE STYLES
 ============================================================================= */
 

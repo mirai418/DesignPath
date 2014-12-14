@@ -400,6 +400,16 @@ angular.module('designpathApp')
   };
 
   /**
+  * Returns the selected index of a given question
+  */
+  quiz.getSelected = function (questionPk) {
+    if (angular.isUndefined(selected)) {
+      quiz.init();
+    }
+    return selected[questionPk - 1];
+  };
+
+  /**
   * This method evaluates the answers that the user selected by tallying up the
   * points. At the end, it sorts the outcome categories in point order from
   * highest to lowest, which indicates the user-best-fit stack.
