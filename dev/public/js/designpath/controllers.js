@@ -148,4 +148,37 @@ angular.module("designpathApp")
     }
   });
 
+}])
+
+
+.controller("Explore2Ctrl", [ "$scope", "GraphCircles", "GraphDots", "DesignPathOutcomes",
+  function ($scope, GraphCircles, GraphDots, DesignPathOutcomes) {
+
+  $scope.pageClass = 'explore-page';
+
+  $scope.circles = GraphCircles;
+  $scope.dots = GraphDots;
+
+  $scope.DesignPathOutcomes = DesignPathOutcomes;
+
+  $scope.curCategory = DesignPathOutcomes[0];
+
+  $scope.$watch(function () {
+    return $scope.curCategory;
+  }, function (newValue) {
+    var index = DesignPathOutcomes.indexOf(newValue);
+    if (angular.isDefined($scope.curIndex)) {
+      $scope.circles[$scope.curIndex].alwaysHover = false;
+      for (var i = 0; i < DesignPathOutcomes[$scope.curIndex].relevantDots.length; i++) {
+        $scope.dots[DesignPathOutcomes[$scope.curIndex].relevantDots[i]].alwaysHover = false;
+      }
+    }
+    $scope.circles[index].alwaysHover = true;
+    for (var j = 0; j < newValue.relevantDots.length; j++) {
+      $scope.dots[newValue.relevantDots[j]].alwaysHover = true;
+    }
+    $scope.curIndex = index;
+
+  });
+
 }]);

@@ -26,12 +26,22 @@ angular.module("designpathApp")
         return (d < circle.diameter / 2);
       };
 
+      var pointOnDot = function (dot, x, y) {
+        var dx = Math.abs(dot.x - x);
+        var dy = Math.abs(dot.y - y);
+
+        return (dx <= 5 && dy <= 5);
+      };
+
       scope.mouseMove = function (event) {
         // console.log(event.offsetX + ", " + event.offsetY);
         var x = event.offsetX;
         var y = event.offsetY;
         angular.forEach(scope.circles, function (circle) {
           circle.hover = pointInCircle(circle, x, y);
+        });
+        angular.forEach(scope.dots, function (dot) {
+          dot.hover = pointOnDot(dot, x, y);
         });
       };
     }
@@ -70,6 +80,43 @@ angular.module("designpathApp")
                  };
         }
 
+      };
+
+    }
+  };
+}])
+
+.directive('graphDots', [ function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: '/html/graph-dot.html',
+
+    scope: {
+      dot: '='
+    },
+
+    link: function(scope, iElm, iAttrs, controller) {
+
+      var keyLength = scope.dot.key.length;
+
+      scope.getStyle = function () {
+        var adjust = (scope.dot.alwaysHover || scope.dot.hover) ? 8 : 5;
+        return { 'top': (scope.dot.y - adjust) + 'px',
+                 'left': (scope.dot.x - adjust) + 'px' };
+      };
+
+      scope.getKeyStyle = function (thus) {
+        var top = (scope.dot.y - 7) + 'px';
+        if (scope.dot.keyPlace == "E") {
+          return { 'top': top,
+                   'left': (scope.dot.x + 13) + 'px'
+                 };
+        } else {
+          return { 'top': top,
+                   'left': (scope.dot.x - 16 - keyLength * 6) + 'px'
+                 };
+        }
 
       };
 

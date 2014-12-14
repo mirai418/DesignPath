@@ -4,28 +4,28 @@ angular.module('designpathApp')
 * Positions and Sizing of the Circles on the graph
 */
 .constant("GraphCircles", [
-  { key: 'research', keyPlace: 'NW', diameter: 380, top: 100, left: 0 },
-  { key: 'macro', keyPlace: 'NW', diameter: 290, top: 103, left: 150 },
+  { key: 'macro', keyPlace: 'SW', diameter: 290, top: 103, left: 150 },
   { key: 'micro', keyPlace: 'NE', diameter: 290, top: 103, left: 190 },
+  { key: 'research', keyPlace: 'NW', diameter: 380, top: 100, left: 0 },
+  { key: 'business', keyPlace: 'SW', diameter: 370, top: 150, left: 180 },
   { key: 'visual', keyPlace: 'NE', diameter: 290, top: 0, left: 270 },
-  { key: 'implementation', keyPlace: 'SE', diameter: 300, top: 200, left: 265 },
-  { key: 'business', keyPlace: 'SW', diameter: 370, top: 150, left: 180 }
+  { key: 'implementation', keyPlace: 'SE', diameter: 300, top: 200, left: 265 }
 ])
 
 /**
 * Positions of the dots on the graphs
 */
 .constant("GraphDots", [
-  { x: 210, y: 220, title:'abstract'},
-  { x: 210, y: 275, title:'people'},
-  { x: 285, y: 140, title:'diagnostic'},
-  { x: 285, y: 360, title:'analytical'},
-  { x: 305, y: 80, title:'design'},
-  { x: 305, y: 420, title:'number'},
-  { x: 325, y: 140, title:'intuition'},
-  { x: 325, y: 360, title:'sensing'},
-  { x: 410, y: 220, title:'concrete'},
-  { x: 410, y: 275, title:'information'}
+  { x: 210, y: 220, keyPlace: 'W', key: 'abstract orientation'}, // 0
+  { x: 210, y: 275, keyPlace: 'W', key: 'people skills'}, // 1
+  { x: 285, y: 140, keyPlace: 'W', key: 'diagnostic reasoning'}, // 2
+  { x: 285, y: 360, keyPlace: 'W', key: 'analytical reasoning'}, // 3
+  { x: 305, y: 80, keyPlace: 'E', key: 'design memory'}, // 4
+  { x: 305, y: 420, keyPlace: 'E', key: 'number memory'}, // 5
+  { x: 325, y: 140, keyPlace: 'E', key: 'intuition'}, // 6
+  { x: 325, y: 360, keyPlace: 'E', key: 'sensing'}, // 7
+  { x: 410, y: 220, keyPlace: 'E', key: 'concrete orientation'}, // 8
+  { x: 410, y: 275, keyPlace: 'E', key: 'information skills'} // 9
 ])
 
 /**
@@ -40,6 +40,7 @@ angular.module('designpathApp')
     field: "User Experience Design (Macro)",
     job: "User Experience (UX) Designer, Information Architect",
     link: "https://www.linkedin.com/job/ux-designer-jobs/",
+    relevantDots: [0, 1, 2, 3, 6, 7, 8, 9],
     description: "User Experience is a process in which the needs, wants, and limitations of end users of a product, service or process are given extensive attention at each stage of the design process. At a macro level, designers consider heuristics to enhance customer satisfaction and loyalty by improving the usability, ease of use, and pleasure provided in the interaction between the customer and the product.within any professional field of design."
   },
   {
@@ -47,6 +48,7 @@ angular.module('designpathApp')
     field: "User Experience Design (Micro)",
     job: "User Experience (UX) Designer",
     link: "https://www.linkedin.com/job/interaction-designer-jobs/",
+    relevantDots: [0, 1, 2, 3, 6, 7, 8, 9],
     description: "The 'micro' level of User Experience Design is detail-oriented, and involves the micro-interactions between users and products. Often, designers work on interfaces where the interactions between humans and machines occur. The goal of this interaction is to allow effective operation and control of the machine from the human end, whilst the machine simultaneously feeds back information that aids the operators decision making process."
   },
   {
@@ -54,6 +56,7 @@ angular.module('designpathApp')
     field: "Design Research",
     job: "User Experience(UX) Researcher",
     link: "https://www.linkedin.com/job/user-experience-researcher-jobs/",
+    relevantDots: [0, 1, 2, 3, 5, 7],
     description: "Design researchers explore the process of design, using various design methods. Research may be embedded within the process of design, including work concerned with the context of designing and research-based design practice. The field is broad: aimed at understanding and improving design processes and practices, rather than developing domain-specific knowledge within any professional field of design."
   },
   {
@@ -61,6 +64,7 @@ angular.module('designpathApp')
     field: "Design Business",
     job: "Product Manager",
     link: "https://www.linkedin.com/job/product-manager-jobs/",
+    relevantDots: [1, 3, 5, 7, 8, 9],
     description: "Careers in the 'business' of design deal with managing the creative output of designers, and driving value. For example, product management is an organizational lifecycle function within a company dealing with the planning, forecasting, and production, or marketing of a product or products at all stages of the product lifecycle. A product manager investigates, selects, and drives the development of products for an organization, performing the activities of product management."
   },
   {
@@ -68,6 +72,7 @@ angular.module('designpathApp')
     field: "Visual Design",
     job: "Visual Designer",
     link: "https://www.linkedin.com/job/visual-designer-jobs/",
+    relevantDots: [2, 4, 6, 8, 9],
     description: "Visual design focuses on the aesthetics, or the 'look and feel' of a product. A Visual Designer may also be known as a 'Graphic Designer' or a 'Communication Designer.' Practitioners need to be able to use colors, images, and symbols to convey meaning; communicate messages non-verbally; and have an intuitive knowledge of how people will respond to their products."
   },
   {
@@ -75,6 +80,7 @@ angular.module('designpathApp')
     field: "Design Implementation",
     job: "Front End Engineer, Web Developer",
     link: "https://www.linkedin.com/job/front-end-engineer-jobs/",
+    relevantDots: [3, 5, 7, 8, 9],
     description: "Implementation is the making of products, which other people may have designed. In order to implement designs, practitioners must have specific skillsets. For example, a web developer is a programmer who specializes in the development of World Wide Web applications. A software engineer develops and maintains software."
   }
 ])

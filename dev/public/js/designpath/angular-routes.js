@@ -48,6 +48,12 @@ angular.module('designpathApp')
     templateUrl: "html/explore.html",
     controller: "ExploreCtrl"
   })
+  .when("/explore-2", {
+    title: "Explore",
+    class: "explore-page",
+    templateUrl: "html/explore-2.html",
+    controller: "Explore2Ctrl"
+  })
 
   .otherwise({
     title: "404",

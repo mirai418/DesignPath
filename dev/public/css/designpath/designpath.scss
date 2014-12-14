@@ -74,6 +74,58 @@ $mobile-logo-height: 32px;
           animation: $args;
 }
 
+hr.zero {
+  margin: 0;
+  border: 1px solid red;
+  @include transform(rotate(0deg));
+  width: 200px;
+  position: absolute;
+  top: 300px;
+  left: 300px;
+
+}
+
+hr.one {
+  margin: 0;
+  border: 1px solid blue;
+  @include transform(rotate(45deg));
+  width: 200px;
+  position: absolute;
+  top: 000px;
+  left: 000px;
+}
+
+hr.two {
+  margin: 0;
+  border: 1px solid green;
+  @include transform(rotate(135deg));
+  width: 200px;
+  position: absolute;
+  top: 300px;
+  left: 300px;
+}
+
+hr.three {
+  margin: 0;
+  border: 1px solid orange;
+  @include transform(rotate(225deg));
+  width: 200px;
+  position: absolute;
+  top: 300px;
+  left: 300px;
+}
+
+hr.four {
+  margin: 0;
+  border: 1px solid purple;
+  @include transform(rotate(315deg));
+  width: 200px;
+  position: absolute;
+  top: 300px;
+  left: 300px;
+}
+
+
 /* UTILITY STYLES
 ============================================================================= */
 
@@ -95,7 +147,7 @@ $mobile-logo-height: 32px;
   width: 100%;
 }
 
-.position-relative{
+.position-relative {
   position: relative;
 }
 
@@ -751,7 +803,7 @@ section {
 .venn-circle {
   border-radius: 50%;
   background-color: $theme-color;
-  opacity: 0.1;
+  opacity: 0.2;
   position: absolute;
   z-index: 0;
 
@@ -765,18 +817,17 @@ section {
 
 .venn-circle-key {
   position: absolute;
-  color: #999;
+  color: #bbb;
   text-transform: uppercase;
 
   &.hover {
-    color: #666;
+    color: #333;
     z-index: 2;
-    font-weight: bold;
   }
 
 }
 
-.dot {
+.graph-dot {
   z-index: 2;
   border-radius: 50%;
   position: absolute;
@@ -784,8 +835,24 @@ section {
   height: 10px;
   background-color: $white;
 
-  &:hover {
-    background-color: black;
+  &.hover {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.graph-dot-key {
+  font-family: 'Merriweather', serif;
+  visibility: hidden;
+  position: absolute;
+  color: $white;
+  text-transform: lowercase;
+  font-size: 12px;
+
+  &.hover {
+    visibility: visible;
+    // color: #666;
+    z-index: 2;
   }
 }
 
