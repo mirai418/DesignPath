@@ -72,12 +72,6 @@ angular.module("designpathApp")
   $scope.userBestFit = getOutcomeByPk(userBestFitStack[0].key);
   var index = DesignPathOutcomes.indexOf($scope.userBestFit);
 
-  // for (var i = 0; i < $scope.circles.length; i++) {
-  //   if ($scope.circles[i].key === $scope.userBestFit.pk) {
-  //     $scope.circles[i].alwaysHover = true;
-  //   }
-  // }
-
   $scope.circles[index].alwaysHover = true;
   var j;
   for (j = 0; j < $scope.userBestFit.relevantDots.length; j++) {
@@ -86,7 +80,6 @@ angular.module("designpathApp")
   for (j = 0; j < $scope.userBestFit.relevantLines.length; j++) {
     $scope.lines[$scope.userBestFit.relevantLines[j]].show = true;
   }
-  // $scope.curIndex = index;
 
 }])
 

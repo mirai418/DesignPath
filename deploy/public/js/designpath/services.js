@@ -31,8 +31,6 @@ angular.module('designpathApp')
 /**
 * Positions of the lines on the graph
 */
-// .constant("GraphLines", 
-
 .factory("GraphLines", [ "GraphDots", function (GraphDots) {
   return [
     { x1: GraphDots[0].x, y1: GraphDots[0].y, x2: GraphDots[1].x, y2: GraphDots[1].y }, // 0
