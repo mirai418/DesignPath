@@ -424,9 +424,7 @@ header {
         letter-spacing: 1px;
 
         @media screen and (max-width: $desktop-content-width) {
-          font-size: 1em;
           line-height: $mobile-header-height;
-          letter-spacing: 1px;
         }
 
         @media screen and (min-width: $desktop-content-width + 1) {

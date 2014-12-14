@@ -272,9 +272,7 @@ header {
         letter-spacing: 1px; }
         @media screen and (max-width: 960px) {
           header nav ul li {
-            font-size: 1em;
-            line-height: 48px;
-            letter-spacing: 1px; } }
+            line-height: 48px; } }
         @media screen and (min-width: 961px) {
           header nav ul li:first-child {
             display: none; } }
